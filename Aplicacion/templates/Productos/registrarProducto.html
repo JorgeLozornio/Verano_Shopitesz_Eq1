@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viweport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <!--CSS de Bootstrap -->
+    <link href="bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color:darkviolet;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: ivory;">Shopitesz</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="Productos_General.html" style="color: ivory;">Inicio</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: ivory;" href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Productos
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="ropa.html">Ropa</a></li>
+                            <li><a class="dropdown-item" href="computo.html">Computo</a></li>
+                            <li><a class="dropdown-item" href="papeleria.html">Papeleria</a></li>
+                            <li><a class="dropdown-item" href="laboratorio.html">Articulos de laboratorio</a></li>
+                            <li><a class="dropdown-item" href="electronica.html">Electronica</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="registrarProducto.html">Regitrar Producto</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: ivory;" href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Mi cuenta
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Información</a></li>
+                            <li><a class="dropdown-item" href="#">Mis ventas</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Mis compras</a></li>
+                            <li><a class="dropdown-item" href="#">Salir</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="buscar" placeholder="Buscar" aria-label="Buscar">
+                    <button class="btn btn-outline-success" type="submit" style="color: ivory;">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <form>
+        <br>
+        <br>
+        <h1><b>Registro de Productos</b></h1>
+        <br>
+        <br>
+        <select class="form-select" aria-label="Categoria del producto">
+            <option selected>Categoria del producto</option>
+            <option value="1">Ropa</option>
+            <option value="2">Computo</option>
+            <option value="3">Papeleria</option>
+            <option value="4">Articulos de Laboratorio</option>
+            <option value="5">Electronica</option>
+            <option value="6">Papeleria</option>
+        </select>
+        <br>
+        <br>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Nombre del Producto</span>
+            <input type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+        </div>
+        <br>
+        <br>
+        <div class="input-group">
+            <span class="input-group-text"> Precio del prducto</span>
+            <input type="text" class="form-control" aria-label="pesos mexicanos">
+            <span class="input-group-text">$</span>
+            <span class="input-group-text">0.00 MXN</span>
+        </div>
+        <br>
+        <br>
+        <label for="imagen"><b>Imagen del Producto</b></label>
+        <div class="mb-3">
+            <div class="input-group mb-3">
+
+                <label class="input-group-text" for="inputGroupFile01">Subir</label>
+                <input type="file" class="form-control" id="inputGroupFile01">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">Email de contacto</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">Este sera el correo que se tendra como contacto con usted como
+                vendedor</div>
+        </div>
+        <br>
+        <br>
+        <label for="imagen"><b>Plan del anuncio</b></label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Gratis
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+                Premium
+            </label>
+        </div>
+        <br>
+        <button style="background: darkgreen; color: floralwhite; text-align: center;">Publicar</button>
+        
+        <button style="background: red; color: floralwhite; text-align: center;">Eliminar</button>
+
+    </form>
+
+
+    <!--Todos los plugins Javascrpt de Bootstrap-->
+    <script src="bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viweport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <!--CSS de Bootstrap -->
+    <link href="bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color:darkviolet;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: ivory;">Shopitesz</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="Productos_General.html" style="color: ivory;">Inicio</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: ivory;" href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Productos
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="ropa.html">Ropa</a></li>
+                            <li><a class="dropdown-item" href="computo.html">Computo</a></li>
+                            <li><a class="dropdown-item" href="papeleria.html">Papeleria</a></li>
+                            <li><a class="dropdown-item" href="laboratorio.html">Articulos de laboratorio</a></li>
+                            <li><a class="dropdown-item" href="electronica.html">Electronica</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="registrarProducto.html">Regitrar Producto</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: ivory;" href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Mi cuenta
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Información</a></li>
+                            <li><a class="dropdown-item" href="#">Mis ventas</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Mis compras</a></li>
+                            <li><a class="dropdown-item" href="#">Salir</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="buscar" placeholder="Buscar" aria-label="Buscar">
+                    <button class="btn btn-outline-success" type="submit" style="color: ivory;">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <table class="table table-success table-bordered border-light">
+        <thead>
+            <tr>
+                <th scope="col">Imagen</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Estatus</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row" style="text-align: center;"><img src="images/playeraTEC.jpg" width="70" height="70">
+                </th>
+                <td><b>Playera TECNM</b>
+                    <br>
+                    De: fcontreras849@accitesz
+                    <br>
+                    Visitas: 45
+                    <br>
+                    ID:5896321458
+                </td>
+                <td>$ 500.00 MXN</td>
+                <td>Plan del anuncio: <b>Gratis</b></td>
+                <td><button style="background: darkgreen; color: floralwhite;">Modificar</button>
+                    <br>
+                    <button style="background: red; color: floralwhite; text-align: end;">Eliminar</button>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+    <!--Todos los plugins Javascrpt de Bootstrap-->
+    <script src="bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>
