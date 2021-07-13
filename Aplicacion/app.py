@@ -1,40 +1,28 @@
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
 
+#_______________RUTAS RELACIONADAS CON LOS CLIEMTES_______________#
+#REDIRECCIONA AL LOGIN
 @app.route("/")
-def inicio():
-    return "Hola mundo"
-
-@app.route("/login")
 def login():
-    return "otra ruta de prueba"
+    return render_template('usuarios/login.html')
 
-@app.route("/productos")
-def consultarProductos():
-    return "Retorna la lista de productos"
+#REDIRECCION AL REGISTRO UTILIZADO POR LOS CLIENTES
+@app.route('/registro/clientes')
+def registroClientes():
+    return render_template('usuarios/registro.html')
 
-@app.route("/productos/agregar")
-def agregarProducto():
-    return "agregando un producto"
+#REDIRECCIONA AL PERFIL DEL USUARIO
+@app.route('/usuarios/perfil')
+def perfil():
+    return render_template('usuarios/perfil.html')
 
-@app.route("/productos/actualizar")
-def actualizarProducto():
-    return "actualizando un producto"
-@app.route("/cesta")
-def consultarCesta():
-    return "consultando la cesta de compra"
 
-@app.route("/productos/categoria/<int:id>")
-def consultarProductosCategoria(id):
-    return "consultando los productos de la cetogoria: "+str(id)
-
-@app.route("/clientes/<string:nombre>")
-def consultarCliente(nombre):
-    return "consultando al cliente:"+nombre
-
-@app.route("/productos/<float:precio>")
-def consultarPorductosPorPrecio(precio):
-    return "Hola"+str(precio)
+#_______________RUTAS RELACIONADAS CON LOS PRODUCTOS_______________#
+#REDIRECCIONA A LA PAGINA DE CONSULTA GENERAL DE PRODUCTOS
+@app.route('/productos')
+def productos():
+    return render_template('productos/productos_general.html')
 
 if __name__=='__main__':
     app.run(debug=True)

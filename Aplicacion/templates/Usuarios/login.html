@@ -7,16 +7,6 @@
         <title>Login</title>
         <!--CSS de Bootstrap -->
         <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../images">
-
-        <style>
-            #centro{
-                margin-left: auto;
-                margin-right: auto;
-                display: table-cell;
-                vertical-align: middle;
-            }
-        </style>
 
     </head>
 
@@ -47,10 +37,9 @@
                                   
                             </form>
 
-                            <p class="card-text">¿No tienes cuenta?  <a href="registro.html">Registrate</a></p>
+                            <p class="card-text">¿No tienes cuenta?  <a href="{{url_for('registroClientes')}}">Registrate</a></p>
                             
                             <a href="">¿Olvidaste tu contraseña?</a> <br>
-                            <a href="../Productos/Productos_General.html">Ir al inicio</a>
 
                         </div>
                     </div>
