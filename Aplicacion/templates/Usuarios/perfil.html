@@ -1,4 +1,9 @@
 {% extends "layout.html" %}
+
+{% block titulo%}
+    Perfil
+{% endblock %}
+
 {% block content %}
 
 <div class="container" style="width: 1800;">
@@ -12,19 +17,19 @@
                 
                     <ul class="list-group list-group-flush">
                         <div class="d-grid">
-                            <a href="../Pedidos/Pedidos.html" class="btn btn-succes btn-lg" role="button">Mis Compras</a>
+                            <a href="{{url_for('usuarioCompras')}}" class="btn btn-succes btn-lg" role="button">Mis Compras</a>
                         </div><br>
                         <div class="d-grid">
-                            <a href="../Pedidos/Compra.html" class="btn btn-succes btn-lg" role="button">Mi Pedido</a>
+                            <a href="{{url_for('usuarioPedido')}}" class="btn btn-succes btn-lg" role="button">Mi Pedido</a>
                         </div><br>
                         <div class="d-grid">
-                            <a href="../Pedidos/Seguimiento.html" class="btn btn-succes btn-lg" role="button">Seguir Pedido</a>
+                            <a href="{{url_for('usuarioSegPedido')}}" class="btn btn-succes btn-lg" role="button">Seguir Pedido</a>
                         </div><br>
                         <div class="d-grid">
-                            <a href="../Cesta/Cesta.html" class="btn btn-succes btn-lg" role="button">Cesta</a>
+                            <a href="{{url_for('cesta')}}" class="btn btn-succes btn-lg" role="button">Cesta</a>
                         </div><br>
                         <div class="d-grid">
-                            <a href="../Tarjetas/AltaTarjeta.html" class="btn btn-succes btn-lg" role="button">Mis Tarjetas</a>
+                            <a href="{{url_for('tarjetas')}}" class="btn btn-succes btn-lg" role="button">Mis Tarjetas</a>
                         </div><br>
                       </ul>
 
