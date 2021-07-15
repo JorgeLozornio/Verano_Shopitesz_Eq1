@@ -1,5 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask,render_template,request,redirect,url_for,flash
+from flask_bootstrap import Bootstrap
+from flask_sqlalchemy import SQLAlchemy, sqlalchemy
+from modelo.dao import db,Categoria,Producto
+from flask_login import login_required,login_user,logout_user,current_user,login_manager
+
 app = Flask(__name__)
+
+Bootstrap(app)
+
+app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://user_shopitesz:Shopit3sz.123@localhost/shopitesz'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
+app.secret_key='Cl4v3'
 
 #_______________RUTAS RELACIONADAS CON LOS CLIEMTES_______________#
 #REDIRECCIONA AL LOGIN
@@ -56,5 +67,74 @@ def tarjetas():
     return render_template('tarjetas/Altatarjetas.html')
 
 
+#_______________RUTAS RELACIONADAS CON LAS CATEGORIAS_______________#
+#CONSULTA GENERAL
+@app.route('/Categorias')
+def consultaCategorias():
+    cat=Categoria()
+    return render_template('categorias/ConsultaGeneral.html',categorias=cat.consultaGeneral())
+
+#CONSULTA IMAGEN
+@app.route('/Categorias/consultarImagen/<int:id>')
+def consultarImagenCategoria(id):
+    cat=Categoria()
+    return cat.consultarImagen(id)
+
+#REDIRECCIONA A LA PAGINA DE AGREGAR CATEGORIAS
+@app.route('/Categorias/nueva')
+def nuevaCategoria():
+    return render_template('categorias/agregar.html')
+
+#AGREGAR CATEGORIAS
+@app.route('/Categorias/agregar',methods=['post'])
+def agregarCategoria():
+    try:
+        cat=Categoria()
+        cat.nombre=request.form['nombre']
+        cat.imagen=request.files['imagen'].stream.read()
+        cat.estatus='Activa'
+        cat.agregar()
+        flash('¡ Categoria agregada con exito !')
+    except:
+        flash('¡ Error al agregar la categoria !')
+    return redirect(url_for('consultaCategorias'))
+
+#CONSULTAR CATEGORIA ESPECIFICA
+@app.route('/Categorias/<int:id>')
+def consultarCategoria(id):
+    cat=Categoria()
+    return render_template('categorias/editar.html',cat=cat.consultaIndividuall(id))
+
+#EDITAR CATEGORIAS
+@app.route('/Categorias/editar',methods=['POST'])
+def editarCategoria():
+    try:
+        cat=Categoria()
+        cat.idCategoria=request.form['id']
+        cat.nombre=request.form['nombre']
+        imagen=request.files['imagen'].stream.read()
+        if imagen:
+            cat.imagen=imagen
+        cat.estatus=request.values.get("estatus","Inactiva")
+        cat.editar()
+        flash('¡ Categoria editada con exito !')
+    except:
+        flash('¡ Error al editar la categoria !')
+
+    return redirect(url_for('consultaCategorias'))
+
+#ELIMINAR CATEGORIA
+@app.route('/Categorias/eliminar/<int:id>')
+def eliminarCategoria(id):
+    try:
+        categoria=Categoria()
+        #categoria.eliminar(id)
+        categoria.eliminacionLogica(id)
+        flash('Categoria eliminada con exito')
+    except:
+        flash('Error al eliminar la categoria')
+    return redirect(url_for('consultaCategorias'))
+
 if __name__=='__main__':
+    db.init_app(app)
     app.run(debug=True)

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block titulo%}
+    Consulta General de Categorias
+{% endblock %}
+
+{% block content %}
+{{super()}}
+
+<div>
+    <div class=" d-flex justify-content-center py-4" style="height: 800px">
+        <div >
+            <div class="card text-white bg-success mb-3 text-center shadow-lg" style="max-width: rem; width: 500PX;">
+                <div class="card-header"> 
+                    <img src="../../static/img/tec.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                    Agregar Categoria</div>
+                    <div class="card-body bg-light text-dark">
+                        <form action="/Categorias/agregar" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="nombre">Nombre:</label>
+                                <input type="text" name="nombre" required maxlength="60" placeholder="Nombre de Categoria" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen:</label>
+                                <input type="file" name="imagen" placeholder="Imagen de la Categoria" class="form-control">
+                            </div><br>
+                                <button type="submit" class="btn btn-primary">Registrar</button>
+                                <a href="/Categorias" class="btn btn-danger">Cancelar</a>
+                        </form>
+                    </div>                   
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

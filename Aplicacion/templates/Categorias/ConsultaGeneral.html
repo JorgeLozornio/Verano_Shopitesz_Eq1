@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block titulo%}
+    Consulta General de Categorias
+{% endblock %}
+
+{% block content %}
+
+{{super()}}
+<div>
+    
+    <div class=" d-flex justify-content-center py-4" style="height: 800px">
+        <div >
+            <div class="card text-white bg-success mb-3 text-center shadow-lg" style="max-width: rem; width: 1800PX;">
+                <div class="card-header"> 
+                    <img src="../../static/img/tec.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                    Listado de Categorias</div>
+                <div class="card-body bg-light text-dark">
+                    <table class="table table-light">
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>ESTATUS</th>
+                        <th>IMAGEN</th>
+                        <th>Ver</th>
+                        {% for cat in categorias %}
+                            <tr>
+                                <td>{{cat.idCategoria}}</td>
+                                <td>{{cat.nombre}}</td>
+                                <td>{{cat.estatus}}</td>
+                                <td><img src="/Categorias/consultarImagen/{{cat.idCategoria}}" width="100px" height="80px"></td>
+                                <td>
+                                    <a href="/Categorias/{{cat.idCategoria}}">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
