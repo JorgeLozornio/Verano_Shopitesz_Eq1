@@ -14,7 +14,7 @@
         <div class="container">
             <div class=" d-flex justify-content-center align-items-center" style="height: 800px">
                 <div >
-                    <div class="card text-white bg-success mb-3 text-center" style="max-width: rem; width: 500PX;">
+                    <div class="card text-white bg-success mb-3 text-center shadow-lg" style="max-width: rem; width: 500PX;">
                         <div class="card-header"> 
                             <img src="../../static/img/tec.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
                             Shopitesz</div>
@@ -23,16 +23,17 @@
                         
                             <form action="#">
                                                                 
-                                <div class="form-floating mb-3">
+                                <div class="form-floating mb-3 shadow-lg">
                                     <input type="email" class="form-control" id="validationCustom01" placeholder="name@example.com" required>
                                     <label for="validationCustom01">Correo</label>
+                                    <div class="valid-feedback">Correcto</div>
                                   </div>
-                                  <div class="form-floating">
+                                  <div class="form-floating shadow-lg">
                                     <input type="password" class="form-control" id="validationCustom02" placeholder="Password" required>
                                     <label for="validationCustom02">Contraseña</label>
                                   </div><br>
                                   <div class="d-grid">
-                                    <button class="btn btn-success" type="submit">Continuar</button>
+                                    <button class="btn btn-success" type="submit" onclick="location.href='http://127.0.0.1:5000/productos'">Continuar</button>
                                   </div><br>
                                   
                             </form>
