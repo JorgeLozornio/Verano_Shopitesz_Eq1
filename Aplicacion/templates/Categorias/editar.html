@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+
+{% block titulo%}
+Editar Caategorias
+{% endblock %}
+
+{% block content %}
+{{super()}}
+
+<div>
+    <div class=" d-flex justify-content-center py-4" style="height: 800px">
+        <div>
+            <div class="card text-white bg-success mb-3 text-center shadow-lg" style="max-width: rem; width: 500PX;">
+                <div class="card-header">
+                    <img src="../../static/img/tec.jpg" alt="" width="30" height="24"
+                        class="d-inline-block align-text-top">
+                    Edición de categorias
+                </div>
+                <div class="card-body bg-light text-dark">
+                    <form action="/Categorias/editar" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="id">ID:</label>
+                            <input type="number" name="id" value="{{cat.idCategoria}}" readonly class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" name="nombre" required maxlength="60" placeholder="Nombre de Categoria"
+                                class="form-control" value="{{cat.nombre}}">
+                        </div>
+                        <div class="form-control">
+                            <label for="estatus">Estatus:</label>
+                            {% if cat.estatus=='A' %}
+                            <input type="checkbox" name="estatus" value="A" checked>
+                            {% else %}
+                            <input type="checkbox" name="estatus" value="I">
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label>Imagen:</label>
+                            <input type="file" name="imagen" placeholder="Imagen de la Categoria" class="form-control">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#imagen">
+                                Ver Imagen
+                            </a>
+                        </div><br>
+                        <button type="submit" class="btn btn-success">
+                            Guardar
+                        </button>
+                        <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrar">
+                            Eliminar
+                        </a>
+                        <a href="/Categorias" class="btn btn-primary">
+                            Cancelar
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para ver la imagen-->
+<div id="imagen" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white text-center">
+                <h4 class="modal-title">Imagen de la categoria: <b>{{cat.nombre}}</b></h4>
+            </div>
+            <div class="modal-body">
+                <img src="/Categorias/consultarImagen/{{cat.idCategoria}}" width="200px" height="150px">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal para ver el cuadro de dialogo de eliminar-->
+<div id="borrar" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h4 class="modal-title">Eliminación de Categorias</h4>
+            </div>
+            <div class="modal-body">
+                <p>¿ Estas seguro de eliminar la categoria: <b>{{cat.nombre}} ?</b> </p>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary" href="/Categorias/eliminar/{{cat.idCategoria}}">Aceptar</a>
+                <button type="button" class="btn btn-info bg-danger text-white" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

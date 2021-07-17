@@ -16,6 +16,9 @@
                     <img src="../../static/img/tec.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
                     Listado de Categorias</div>
                 <div class="card-body bg-light text-dark">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end py-4 px-4">
+                        <a href="{{url_for('nuevaCategoria')}}" class="btn btn-success btn-lg"  role="button">Agregar</a>
+                    </div>
                     <table class="table table-light">
                         <th>ID</th>
                         <th>NOMBRE</th>
@@ -29,8 +32,9 @@
                                 <td>{{cat.estatus}}</td>
                                 <td><img src="/Categorias/consultarImagen/{{cat.idCategoria}}" width="100px" height="80px"></td>
                                 <td>
-                                    <a href="/Categorias/{{cat.idCategoria}}">
+                                    <a href="/Categorias/{{cat.idCategoria}}" class="btn btn-warning btn-lg"  role="button">Editar
                                         <span class="glyphicon glyphicon-eye-open"></span>
+                                        
                                     </a>
                                 </td>
                             </tr>

@@ -92,7 +92,7 @@ def agregarCategoria():
         cat=Categoria()
         cat.nombre=request.form['nombre']
         cat.imagen=request.files['imagen'].stream.read()
-        cat.estatus='Activa'
+        cat.estatus='A'
         cat.agregar()
         flash('¡ Categoria agregada con exito !')
     except:
