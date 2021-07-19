@@ -130,7 +130,17 @@ def cesta():
 #REDIRECCIONA A LA PAGINA PARA AGREGAR TARJETAS
 @app.route('/usuarios/tarjetas')
 def tarjetas():
-    return render_template('tarjetas/Altatarjeta.html')
+    return render_template('Tarjetas/AltaTarjeta.html')
+
+#REDIRECCIONA A LA PAGINA PARA CONSULTAR TARJETAS
+@app.route('/usuarios/Consultatarjetas')
+def Consultatarjetas():
+    return render_template('Tarjetas/ConsultaTarjetas.html')
+
+#REDIRECCIONA A LA PAGINA PARA EDITAR TARJETAS
+@app.route('/usuarios/Editartarjetas')
+def Editartarjetas():
+    return render_template('Tarjetas/EditarTarjeta.html')
 
 
 #_______________RUTAS RELACIONADAS CON LAS CATEGORIAS_______________#
