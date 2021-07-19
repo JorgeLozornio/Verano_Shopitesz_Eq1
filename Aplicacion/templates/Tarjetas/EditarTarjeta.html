@@ -8,7 +8,7 @@
 {{super()}}
 
     <br>
-    <CENTER><h1><b>Registrar Tarjeta</b></h1></CENTER>
+    <h1><b>Registrar Tarjeta</b></h1>
     <br>
 <div>
     <div class=" d-flex justify-content-center py-4" style="height: 800px">
@@ -18,7 +18,7 @@
                     <div class="card-body bg-light text-dark">
                         <form action="/Tarjetas/AltaTarjeta" method="post" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label for="nombre">Nombre Completo:</label>
+                                <label>Nombre Completo:</label>
                                 <input type="text" name="Nombre" class="input"><br>
                         &nbsp;</div>
                             <div class="form-group">
@@ -35,8 +35,8 @@
                             </div>
                 &nbsp;<div class="form-group">
                     Tipo:<br>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="radio" name="Debito" class="form-control"> Debito <br>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="radio" name="Credito" class="form-control"> Credito <br>
+                <input type="radio" name="tDebito"> Debito <br>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="tCredito"> Credito <br>
                 &nbsp;</div>
                 <div class="form-group">
                     <label>Fecha de vencimiento:</label>
@@ -73,6 +73,14 @@
                 <input type="radio" name="VISA"> <label><img src="../../images/VISA.png" width="75" height="50"></label>&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="radio" name="MasterCard"> <label><img src="../../images/MasterCard.png" width="75" height="50"></label> <br>
                     &nbsp;</div>
+                            <div class="form-control">
+                            <label for="estatus">Estatus:</label>
+                            {% if cat.estatus=='A' %}
+                            <input type="checkbox" name="estatus" value="A" checked>
+                            {% else %}
+                            <input type="checkbox" name="estatus" value="I">
+                            {% endif %}
+                        </div><br>
                     <button type="submit" class="btn btn-primary">Registrar</button>
                                 <a href="/Tarjetas" class="btn btn-danger">Cancelar</a>
                         </form>
