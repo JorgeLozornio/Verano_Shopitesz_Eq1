@@ -66,6 +66,16 @@ def cesta():
 def tarjetas():
     return render_template('tarjetas/Altatarjetas.html')
 
+#REDIRECCIONA A LA PAGINA PARA CONSULTAR TARJETAS
+@app.route('/usuarios/Consultatarjetas')
+def Consultatarjetas():
+    return render_template('tarjetas/Consultatarjetas.html')
+
+#REDIRECCIONA A LA PAGINA PARA EDITAR TARJETAS
+@app.route('/usuarios/Editartarjetas')
+def Editartarjetas():
+    return render_template('tarjetas/Editartarjetas.html')
+
 
 #_______________RUTAS RELACIONADAS CON LAS CATEGORIAS_______________#
 #CONSULTA GENERAL
