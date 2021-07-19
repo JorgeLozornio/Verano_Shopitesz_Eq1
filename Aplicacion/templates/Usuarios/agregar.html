@@ -19,42 +19,42 @@ Agregar Usuario
                 <div class="card-body bg-light text-dark">
                     <form action="/usuarios/agregar" method="post" enctype="multipart/form-data">
 
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="validationCustom03"
+                        <div class="form-group form-floating mb-3">
+                            <input type="text" class="form-control" name="nombreCompleto"
                                 placeholder="name@example.com" required>
-                            <label for="validationCustom03" name="nombreCompleto">Nombre - Apellido Paterno - Apellido Materno</label>
+                            <label for="validationCustom03" >Nombre - Apellido Paterno - Apellido Materno</label>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input name="direccion" type="text" class="form-control" id="validationCustom03"
+                        <div class="form-group form-floating mb-3">
+                            <input name="direccion" type="text" class="form-control" 
                                 placeholder="name@example.com" required>
                             <label for="validationCustom03">Dirección</label>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input type="tel" class="form-control" id="validationCustom03" name="telefono" required>
+                        <div class="form-group form-floating mb-3">
+                            <input type="tel" class="form-control" name="telefono" required>
                             <label for="validationCustom03">Telefono</label>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" name="email" id="validationCustom01"
+                        <div class="form-group form-floating mb-3">
+                            <input type="email" class="form-control" name="email"
                                 placeholder="name@example.com" required>
                             <label for="validationCustom01">Correo</label>
                         </div>
-                        <div class="form-floating">
-                            <input type="password" class="form-control" name="password" id="validationCustom02" placeholder="Password"
+                        <div class="form-group form-floating">
+                            <input type="password" class="form-control" name="password" placeholder="Password"
                                 required>
                             <label for="validationCustom02">Contraseña</label>
                         </div><br>
-                        <div class="form-floating">
-                            <select class="form-select" id="tipo" name="tipo" aria-label="Floating label select example">
+                        <div class="form-group form-floating">
+                            <select class="form-select form-control" id="tipo" name="tipo" aria-label="Floating label select example">
                                 <option value="Cliente">Cliente</option>
                                 <option value="Vendedor">Vendedor</option>
                                 <option value="Admin">Administrador</option>
                             </select>
-                            <label for="floatingSelect">Tipo</label>
+                            <label for="Tipo">Tipo</label>
                         </div><br>
-                        <div class="form-floating">
-                            <select class="form-select" name="estatus" id="estatus" aria-label="Floating label select example">
-                                <option value="Cliente">Activo</option>
-                                <option value="Vendedor">Inactivo</option>
+                        <div class="form-group form-floating">
+                            <select class="form-select form-control" name="estatus" id="estatus" aria-label="Floating label select example">
+                                <option value="A">Activo</option>
+                                <option value="I">Inactivo</option>
                             </select>
                             <label for="floatingSelect">Estatus</label>
                         </div>

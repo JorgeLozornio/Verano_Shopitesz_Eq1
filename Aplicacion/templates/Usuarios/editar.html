@@ -1,0 +1,121 @@
+{% extends "layout.html" %}
+
+{% block titulo%}
+Editar Caategorias
+{% endblock %}
+
+{% block content %}
+{{super()}}
+
+<div>
+    <div class=" d-flex justify-content-center py-4" style="height: 800px">
+        <div>
+            <div class="card text-white bg-success mb-3 text-center shadow-lg" style="max-width: rem; width: 500PX;">
+                <div class="card-header">
+                    <img src="../../static/img/tec.jpg" alt="" width="30" height="24"
+                        class="d-inline-block align-text-top">
+                    Edición de categorias
+                </div>
+                <div class="card-body bg-light text-dark">
+                    <form action="/usuarios/editar" method="post" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label for="id">ID:</label>
+                            <input type="number" name="id" value="{{us.idUsuario}}" readonly class="form-control">
+                        </div><br>
+                        <div class="form-group form-floating mb-3">
+                            <input type="text" class="form-control" name="nombreCompleto" value="{{us.nombreCompleto}}"
+                                placeholder="name@example.com" required>
+                            <label for="validationCustom03" >Nombre - Apellido Paterno - Apellido Materno</label>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input name="direccion" type="text" class="form-control" value="{{us.direccion}}"
+                                placeholder="name@example.com" required>
+                            <label for="validationCustom03">Dirección</label>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input type="tel" class="form-control" name="telefono" value="{{us.telefono}}"required>
+                            <label for="validationCustom03">Telefono</label>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input type="email" class="form-control" name="email" value="{{us.email}}"
+                                placeholder="name@example.com" required>
+                            <label for="validationCustom01">Correo</label>
+                        </div>
+                        <div class="form-group form-floating">
+                            <input type="password" class="form-control" name="password" placeholder="Password" value="{{us.password}}"
+                                required>
+                            <label for="validationCustom02">Contraseña</label>
+                        </div><br>
+                        <div class="form-group form-floating">
+                            <select class="form-select form-control" id="tipo" name="tipo" aria-label="Floating label select example">
+                                {% if us.tipo == 'Cliente' %}
+                                    <option value="Cliente" selected>Cliente</option>
+                                {% else %}
+                                    <option value="Cliente">Cliente</option>
+                                {% endif %}
+                                {% if us.tipo == 'Vendedor' %}
+                                    <option value="Vendedor" selected>Vendedor</option>
+                                {% else %}
+                                    <option value="Vendedor">Vendedor</option>
+                                {% endif %}
+                                {% if us.tipo == 'Admin' %}
+                                    <option value="Admin" selected>Administrador</option>
+                                {% else %}
+                                    <option value="Admin">Administrador</option>
+                                {% endif %}
+                            </select>
+                            <label for="Tipo">Tipo</label>
+                        </div><br>
+                        <div class="form-group form-floating">
+                            <select class="form-select form-control" name="estatus" id="estatus" aria-label="Floating label select example">
+                                {% if us.estatus == 'A' %}
+                                    <option value="A" selected>Activo</option>
+                                {% else %}
+                                    <option value="A">Activo</option>
+                                {% endif %}
+                                {% if us.estatus == 'I' %}
+                                    <option value="I" selected>Inactivo</option>
+                                {% else %}
+                                    <option value="I">Inactivo</option>
+                                {% endif %}
+                            </select>
+                            <label for="floatingSelect">Estatus</label>
+                        </div>
+
+                        <br>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrar">
+                            Eliminar
+                        </a>
+                        <a href="/usuarios" class="btn btn-primary">Cancelar</a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para ver el cuadro de dialogo de eliminar-->
+<div id="borrar" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h4 class="modal-title">Eliminación de Usuario</h4>
+            </div>
+            <div class="modal-body">
+                <p>¿ Estas seguro de eliminar al usuario: <b>{{us.nombreCompleto}} ?</b> </p>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary" href="/usuarios/eliminar/{{us.idUsuario}}">Aceptar</a>
+                <button type="button" class="btn btn-info bg-danger text-white" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -50,49 +50,64 @@ def agregarUsuario():
         usuario.telefono=request.form['telefono']        
         usuario.email=request.form['email']
         usuario.password=request.form['password']
-        usuario.tipo=request.form['tipo']
-        usuario.estatus=request.form['estatus']
+        usuario.tipo=request.form.get('tipo')
+        usuario.estatus=request.form.get('estatus')
+        print(usuario.nombreCompleto)
+        print(usuario.direccion)
+        print(usuario.telefono)
+        print(usuario.email)
+        print(usuario.tipo)
+        print(usuario.estatus)
         usuario.agregar()
         flash('¡ Usuario registrado con exito')
     except:
+        print('No paso')
         flash('¡ Error al agregar al usuario !')
     return redirect(url_for('consultaUsuarios'))
 
-# #CONSULTAR CATEGORIA ESPECIFICA
-# @app.route('/Categorias/<int:id>')
-# def consultarCategoria(id):
-#     cat=Categoria()
-#     return render_template('categorias/editar.html',cat=cat.consultaIndividuall(id))
+#CONSULTAR USUARIO ESPECIFICO
+@app.route('/usuarios/<int:id>')
+def consultarUsuario(id):
+    us=Usuario()
+    return render_template('usuarios/editar.html',us=us.consultaIndividual(id))
 
-# #EDITAR CATEGORIAS
-# @app.route('/Categorias/editar',methods=['POST'])
-# def editarCategoria():
-#     try:
-#         cat=Categoria()
-#         cat.idCategoria=request.form['id']
-#         cat.nombre=request.form['nombre']
-#         imagen=request.files['imagen'].stream.read()
-#         if imagen:
-#             cat.imagen=imagen
-#         cat.estatus=request.values.get("estatus","Inactiva")
-#         cat.editar()
-#         flash('¡ Categoria editada con exito !')
-#     except:
-#         flash('¡ Error al editar la categoria !')
+#EDITAR USUARIOS
+@app.route('/usuarios/editar',methods=['POST'])
+def editarUsuario():
+    try:
+        us=Usuario()
+        us.idUsuario=request.form['id']
+        us.nombreCompleto=request.form['nombreCompleto']
+        us.direccion=request.form['direccion']
+        us.telefono=request.form['telefono']        
+        us.email=request.form['email']
+        us.password=request.form['password']
+        us.tipo=request.form.get('tipo')
+        us.estatus=request.form.get('estatus')
+        print(us.nombreCompleto)
+        print(us.direccion)
+        print(us.telefono)
+        print(us.email)
+        print(us.tipo)
+        print(us.estatus)
+        us.editar()
+        flash('¡ Usuario editado con exito !')
+    except:
+        flash('¡ Error al editar el usuario !')
 
-#     return redirect(url_for('consultaCategorias'))
+    return redirect(url_for('consultaUsuarios'))
 
-# #ELIMINAR CATEGORIA
-# @app.route('/Categorias/eliminar/<int:id>')
-# def eliminarCategoria(id):
-#     try:
-#         categoria=Categoria()
-#         #categoria.eliminar(id)
-#         categoria.eliminacionLogica(id)
-#         flash('Categoria eliminada con exito')
-#     except:
-#         flash('Error al eliminar la categoria')
-#     return redirect(url_for('consultaCategorias'))
+#ELIMINAR USUARIO
+@app.route('/usuarios/eliminar/<int:id>')
+def eliminarUsuario(id):
+    try:
+        us=Usuario()
+        #categoria.eliminar(id)
+        us.eliminacionLogica(id)
+        flash('Usuario eliminado con exito')
+    except:
+        flash('Error al eliminar el usuario')
+    return redirect(url_for('consultaUsuarios'))
 
 
 #_______________RUTAS RELACIONADAS CON LOS PRODUCTOS_______________#

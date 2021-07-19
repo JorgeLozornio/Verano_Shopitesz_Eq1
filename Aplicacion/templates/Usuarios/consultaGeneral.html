@@ -29,18 +29,18 @@
                         <th>TIPO</th>
                         <th>ESTATUS</th>
                         <th>VER</th>
-                        {% for us in Usuarios %}
+                        {% for us in usuarios %}
                             <tr>
                                 <td>{{us.idUsuario}}</td>
                                 <td>{{us.nombreCompleto}}</td>
                                 <td>{{us.direccion}}</td>
                                 <td>{{us.telefono}}</td>
                                 <td>{{us.email}}</td>
-                                <td>{{us.password_hash}}</td>
+                                <td>{{us.password}}</td>
                                 <td>{{us.tipo}}</td>
                                 <td>{{us.estatus}}</td>                                
                                 <td>
-                                    <a href="#" class="btn btn-warning btn-lg"  role="button">Editar
+                                    <a href="/usuarios/{{us.idUsuario}}" class="btn btn-warning btn-lg"  role="button">Editar
                                         <span class="glyphicon glyphicon-eye-open"></span>
                                         
                                     </a>

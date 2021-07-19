@@ -70,57 +70,57 @@ class Usuario(UserMixin,db.Model):
     direccion=Column(String,nullable=False)
     telefono=Column(String,nullable=False)
     email=Column(String,unique=True)
-    password=Column(String(256),nullable=False)
+    password=Column(String,nullable=False)
     tipo=Column(String,nullable=False)
     estatus=Column(String,nullable=False)
 
-    @property #Implementa el metodo Get (para acceder a un valor)
-    def password(self):
-        raise AttributeError('El password no tiene acceso de lectura')
+    # @property #Implementa el metodo Get (para acceder a un valor)
+    # def password(self):
+    #     raise AttributeError('El password no tiene acceso de lectura')
 
-    @password.setter #Definir el metodo set para el atributo password_hash
-    def password(self,password):#Se informa el password en formato plano para hacer el cifrado
-        self.password_hash=generate_password_hash(password)
+    # @password.setter #Definir el metodo set para el atributo password_hash
+    # def password(self,password):#Se informa el password en formato plano para hacer el cifrado
+    #     self.password_hash=generate_password_hash(password)
 
-    def validarPassword(self,password):
-        return check_password_hash(self.password_hash,password)
-    #Definición de los métodos para el perfilamiento
-    def is_authenticated(self):
-        return True
+    # def validarPassword(self,password):
+    #     return check_password_hash(self.password_hash,password)
+    # #Definición de los métodos para el perfilamiento
+    # def is_authenticated(self):
+    #     return True
 
-    def is_active(self):
-        if self.estatus=='Activo':
-            return True
-        else:
-            return False
-    def is_anonymous(self):
-        return False
+    # def is_active(self):
+    #     if self.estatus=='Activo':
+    #         return True
+    #     else:
+    #         return False
+    # def is_anonymous(self):
+    #     return False
 
-    def get_id(self):
-        return self.idUsuario
+    # def get_id(self):
+    #     return self.idUsuario
 
-    def is_admin(self):
-        if self.tipo=='Administrador':
-            return True
-        else:
-            return False
-    def is_vendedor(self):
-        if self.tipo=='Vendedor':
-            return True
-        else:
-            return False
-    def is_comprador(self):
-        if self.tipo=='Comprador':
-            return True
-        else:
-            return False
-    #Definir el método para la autenticacion
-    def validar(self,email,password):
-        usuario=Usuario.query.filter(Usuario.email==email).first()
-        if usuario!=None and usuario.validarPassword(password) and usuario.is_active():
-            return usuario
-        else:
-            return None
+    # def is_admin(self):
+    #     if self.tipo=='Administrador':
+    #         return True
+    #     else:
+    #         return False
+    # def is_vendedor(self):
+    #     if self.tipo=='Vendedor':
+    #         return True
+    #     else:
+    #         return False
+    # def is_comprador(self):
+    #     if self.tipo=='Comprador':
+    #         return True
+    #     else:
+    #         return False
+    # #Definir el método para la autenticacion
+    # def validar(self,email,password):
+    #     usuario=Usuario.query.filter(Usuario.email==email).first()
+    #     if usuario!=None and usuario.validarPassword(password) and usuario.is_active():
+    #         return usuario
+    #     else:
+    #         return None
     #Método para agregar una cuenta de usuario
     def agregar(self):
         db.session.add(self)
@@ -129,6 +129,18 @@ class Usuario(UserMixin,db.Model):
     #Consulta general
     def consultaGeneral(self):
         return self.query.all()
+
+    def consultaIndividual(self,id):
+        return Usuario.query.get(id)
+
+    def editar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminacionLogica(self,id):
+        cat = self.consultaIndividual(id)
+        cat.estatus='I'
+        cat.editar()
     
 #TABLA DE TARJETAS
 class Tarjetas(db.Model):
