@@ -1,7 +1,7 @@
 from flask import Flask,render_template,request,redirect,url_for,flash
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
-from modelo.dao import db,Categoria,Producto
+from modelo.dao import Usuario, db,Categoria,Producto
 from flask_login import login_required,login_user,logout_user,current_user,login_manager
 
 app = Flask(__name__)
@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://user_shopitesz:Shopit3sz.
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.secret_key='Cl4v3'
 
-#_______________RUTAS RELACIONADAS CON LOS CLIEMTES_______________#
+#_______________RUTAS RELACIONADAS CON LOS USUARIOS_______________#
 #REDIRECCIONA AL LOGIN
 @app.route("/")
 def login():
@@ -27,6 +27,72 @@ def registroClientes():
 @app.route('/usuarios/perfil')
 def perfil():
     return render_template('usuarios/perfil.html')
+
+#CRUD
+#CONSULTA GENERAL
+@app.route('/usuarios')
+def consultaUsuarios():
+    us=Usuario()
+    return render_template('usuarios/ConsultaGeneral.html',usuarios=us.consultaGeneral())
+
+# #REDIRECCIONA A LA PAGINA DE AGREGAR USUARIOS
+@app.route('/usuarios/nuevo')
+def nuevoUsuario():
+    return render_template('usuarios/agregar.html')
+
+# #AGREGAR USUARIOS
+@app.route('/usuarios/agregar',methods=['post'])
+def agregarUsuario():
+    try:
+        usuario=Usuario()
+        usuario.nombreCompleto=request.form['nombreCompleto']
+        usuario.direccion=request.form['direccion']
+        usuario.telefono=request.form['telefono']        
+        usuario.email=request.form['email']
+        usuario.password=request.form['password']
+        usuario.tipo=request.form['tipo']
+        usuario.estatus=request.form['estatus']
+        usuario.agregar()
+        flash('¡ Usuario registrado con exito')
+    except:
+        flash('¡ Error al agregar al usuario !')
+    return redirect(url_for('consultaUsuarios'))
+
+# #CONSULTAR CATEGORIA ESPECIFICA
+# @app.route('/Categorias/<int:id>')
+# def consultarCategoria(id):
+#     cat=Categoria()
+#     return render_template('categorias/editar.html',cat=cat.consultaIndividuall(id))
+
+# #EDITAR CATEGORIAS
+# @app.route('/Categorias/editar',methods=['POST'])
+# def editarCategoria():
+#     try:
+#         cat=Categoria()
+#         cat.idCategoria=request.form['id']
+#         cat.nombre=request.form['nombre']
+#         imagen=request.files['imagen'].stream.read()
+#         if imagen:
+#             cat.imagen=imagen
+#         cat.estatus=request.values.get("estatus","Inactiva")
+#         cat.editar()
+#         flash('¡ Categoria editada con exito !')
+#     except:
+#         flash('¡ Error al editar la categoria !')
+
+#     return redirect(url_for('consultaCategorias'))
+
+# #ELIMINAR CATEGORIA
+# @app.route('/Categorias/eliminar/<int:id>')
+# def eliminarCategoria(id):
+#     try:
+#         categoria=Categoria()
+#         #categoria.eliminar(id)
+#         categoria.eliminacionLogica(id)
+#         flash('Categoria eliminada con exito')
+#     except:
+#         flash('Error al eliminar la categoria')
+#     return redirect(url_for('consultaCategorias'))
 
 
 #_______________RUTAS RELACIONADAS CON LOS PRODUCTOS_______________#
@@ -64,17 +130,7 @@ def cesta():
 #REDIRECCIONA A LA PAGINA PARA AGREGAR TARJETAS
 @app.route('/usuarios/tarjetas')
 def tarjetas():
-    return render_template('Tarjetas/AltaTarjeta.html')
-
-#REDIRECCIONA A LA PAGINA PARA CONSULTAR TARJETAS
-@app.route('/usuarios/Consultatarjetas')
-def Consultatarjetas():
-    return render_template('Tarjetas/ConsultaTarjetas.html')
-
-#REDIRECCIONA A LA PAGINA PARA EDITAR TARJETAS
-@app.route('/usuarios/Editartarjetas')
-def Editartarjetas():
-    return render_template('Tarjetas/EditarTarjeta.html')
+    return render_template('tarjetas/Altatarjeta.html')
 
 
 #_______________RUTAS RELACIONADAS CON LAS CATEGORIAS_______________#
