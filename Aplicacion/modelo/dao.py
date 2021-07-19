@@ -149,7 +149,7 @@ class Tarjetas(db.Model):
     idUsuario = Column( Integer,ForeignKey('Usuarios.idUsuario') )
     noTarjeta = Column( String, unique = True )
     saldo = Column( String, nullable = False )
-    Banco = Column( String, nullable = False )
+    banco = Column( String, nullable = False )
     estatus = Column( String, nullable = False )
 
     def consultaGeneral(self):
