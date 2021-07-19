@@ -85,3 +85,37 @@ class Usuarios(UserMixin,db.Model):
     def validarPassword(self,password):
         return check_password_hash(self.password_hash,password)
     
+#TABLA DE TARJETAS
+class Tarjetas(db.Model):
+    __tablename__='Tarjetas'
+    idTarjeta = Column( Integer, primary_key = True )
+    idUsuario = Column( Integer,ForeignKey('Usuarios.idUsuario') )
+    noTarjeta = Column( String, unique = True )
+    saldo = Column( String, nullable = False )
+    Banco = Column( String, nullable = False )
+    estatus = Column( String, nullable = False )
+
+    def consultaGeneral(self):
+        return self.query.all()
+        #return self.query.filter(Tarjetas.estatus=='Activa').all()
+
+    def consultaIndividuall(self,id):
+        return Tarjetas.query.get(id)
+
+    def agregar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def editar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self,id):
+        tar=self.consultaIndividuall(id)
+        db.session.delete(tar)
+        db.session.commit()
+
+    def eliminacionLogica(self,id):
+        tar = self.consultaIndividuall(id)
+        tar.estatus='Inactiva'
+        tar.editar()
