@@ -171,7 +171,7 @@ def consultaTarjetas():
 def editarTarjeta():
     try:
         tar=Tarjetas()
-        tar.idCategoria=request.form['id']
+        tar.idTarjeta=request.form['id']
         tar.nombre=request.form['nombre']
         tar.estatus=request.values.get("estatus","Inactiva")
         tar.editar()
@@ -187,7 +187,7 @@ def eliminarTarjeta(id):
     try:
         tar=Tarjetas()
         #tarjeta.eliminar(id)
-        tarjeta.eliminacionLogica(id)
+        Tarjetas.eliminacionLogica(id)
         flash('Tarjeta eliminada con exito')
     except:
         flash('Error al eliminar la Tarjeta')
@@ -197,7 +197,7 @@ def eliminarTarjeta(id):
 @app.route('/Tarjetas/<int:id>')
 def consultarTarjeta(id):
     tar=Tarjetas()
-    return render_template('Tarjetas/EditarTarjeta.html',tar=tar.consultaIndividuall(id))
+    return render_template('Tarjetas/EditarTarjeta.html',tarjeta = tar.consultaIndividuall(id))
 
 
 #_______________RUTAS RELACIONADAS CON LAS CATEGORIAS_______________#
