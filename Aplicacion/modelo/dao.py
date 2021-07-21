@@ -64,15 +64,11 @@ class Producto(db.Model):
     def consultaIndividuall(self,id):
         return Tarjetas.query.get(id)
 
-    @app.route('/Productos/consultarImagen/<int:id>')
-    def consultarImagenProductos(id):
-        pro=Productos()
-        return pro.consultarImagen(id).foto
+    def consultarFoto(self,id):
+        return self.consultaIndividuall(id).foto
     
-    @app.route('/Productos/consultarEspecificaciones/<int:id>')
-    def consultarEspecificacionesProductos(id):
-        pro=Productos()
-        return pro.consultarEspecificaciones(id).especificaciones
+    def consultarEspecificaciones(self,id):
+        return self.consultaIndividuall(id).especificaciones
     
     def agregar(self):
         db.session.add(self)
