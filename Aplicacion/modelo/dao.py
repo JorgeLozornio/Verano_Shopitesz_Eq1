@@ -64,6 +64,16 @@ class Producto(db.Model):
     def consultaIndividuall(self,id):
         return Tarjetas.query.get(id)
 
+    @app.route('/Productos/consultarImagen/<int:id>')
+    def consultarImagenProductos(id):
+        pro=Productos()
+        return pro.consultarImagen(id)
+    
+    @app.route('/Productos/consultarEspecificaciones/<int:id>')
+    def consultarEspecificacionesProductos(id):
+        pro=Productos()
+        return pro.consultarEspecificaciones(id)
+    
     def agregar(self):
         db.session.add(self)
         db.session.commit()
