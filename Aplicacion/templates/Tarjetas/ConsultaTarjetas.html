@@ -20,14 +20,15 @@ Alta Tarjetas
                     </div>
                     <table class="table table-light">
                         <th>IDTARJETA</th>
+                        <th>IDTARJETA</th>
                         <th>IDUSUARIO</th>
                         <th>NoTARJETA</th>
                         <th>SALDO</th>
                         <th>BANCO</th>
                         <th>ESTATUS</th>
-                        <th></th>
                         {% for tar in Tarjetas %}
                             <tr>
+                                <td>{{tar.idTarjeta}}</td>
                                 <td>{{tar.idTarjeta}}</td>
                                 <td>{{tar.idUsuario}}</td>
                                 <td>{{tar.noTarjeta}}</td>
@@ -37,10 +38,7 @@ Alta Tarjetas
                                 <td>
                                     <a href="/Tarjetas/{{tar.idTarjeta}}" class="btn btn-warning btn-lg"  role="button">Editar
                                     <span class="glyphicon glyphicon-eye-open"></span>                                   
-                                    </a>
-                                    <a href="/Tarjetas/{{tar.idTarjeta}}" class="btn btn-warning btn-lg"  role="button">Eliminar
-                                        <span class="glyphicon glyphicon-eye-open"></span>                                   
-                                        </a>
+                                    </a>                                   
                                 </td>
                             </tr>
                         {% endfor %}
@@ -50,4 +48,5 @@ Alta Tarjetas
         </div>
     </div>
 </div>
+
 {% endblock %}

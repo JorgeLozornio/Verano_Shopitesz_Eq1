@@ -20,12 +20,12 @@ Alta Tarjetas
                     <form action="/usuarios/EditarTarjeta" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nombre">ID:</label>
-                            <input type="text" name="id" class="input" value='{{tar.idTarjeta}}' required>
+                            <input type="text" name="idTarjeta" class="input" value='{{tar.idTarjeta}}' readonly>
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="nombre">Usuario:</label>
-                            <input type="text" name="Nombre" class="input" value='{{tar.idUsuario}}' required>
+                            <input type="text" name="idUsuario" class="input" value='{{tar.idUsuario}}' required>
                         </div>
                         <br>
                         <div class="form-group">
@@ -45,13 +45,16 @@ Alta Tarjetas
                         <div class="form-control">
                             <label for="estatus">Estatus:</label>
                             {% if tar.estatus=='A' %}
-                            <input type="checkbox" name="estatus" value="A" checked>
+                            <input type="checkbox" name="estatus" value="A" checked> Activo
                             {% else %}
-                            <input type="checkbox" name="estatus" value="I">
+                            <input type="checkbox" name="estatus" value="I"> Inactivo
                             {% endif %}
                         </div>
                         <br>
                         <button type="submit" class="btn btn-primary">Registrar</button>
+                        <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrar">
+                            Eliminar
+                        </a>
                         <a href="/usuarios/Tarjetas" class="btn btn-danger">Cancelar</a>
                     </form>
                 </div>
@@ -61,5 +64,27 @@ Alta Tarjetas
 </div>
 </div>
 <script src="../../static/js/bootstrap.min.js"></script>
+
+
+<!-- Modal para ver el cuadro de dialogo de eliminar-->
+<div id="borrar" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h4 class="modal-title">Eliminación de Tarjeta</h4>
+            </div>
+            <div class="modal-body">
+                <p>¿ Estas seguro de eliminar la Tarjeta: <b>{{tar.noTarjeta}} ?</b> </p>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary" href="/tarjetas/eliminar/{{tar.idTarjeta}}">Aceptar</a>
+                <button type="button" class="btn btn-info bg-danger text-white" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 {% endblock %}
