@@ -60,6 +60,28 @@ class Producto(db.Model):
 
     def consultaGeneral(self):
         return self.query.all()
+    
+    def consultaIndividuall(self,id):
+        return Tarjetas.query.get(id)
+
+    def agregar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def editar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self,id):
+        tar=self.consultaIndividuall(id)
+        db.session.delete(tar)
+        db.session.commit()
+
+    def eliminacionLogica(self,id):
+        tar = self.consultaIndividuall(id)
+        tar.estatus='Inactiva'
+        tar.editar()
+
 
 
 #TABLA DE USUARIOS    
