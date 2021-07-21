@@ -116,6 +116,79 @@ def eliminarUsuario(id):
 def productos():
     return render_template('productos/productos_general.html')
 
+#REDIRECCIONA A LA PAGINA DE AGREGAR PRODUOCTOS
+@app.route('/Productos/registrarProducto')
+def nuevoProducto():
+    return render_template('Productos/registrarProductos.html')
+
+#REDIRECCIONA A LA PAGINA PARA AGREGAR Productos
+@app.route('/Productos/registrarProductos',methods=['post'])
+def agregarProducto():
+    try:
+        pro=Productos()
+        pro.idProducto = request.form['idProducto']
+        pro.idCategoria = request.form['idCategoria']
+        pro.nombre = request.form['nombre']
+        pro.descripcion = request.form['descripcion']
+        pro.precio = request.form['precio']
+        pro.existencia = request.form['existencia']
+        pro.foto = request.form['foto']
+        pro.especificaciones = request.form['especificaciones']
+        
+        pro.estatus = 'A'
+        pro.agregar()
+        flash('¡ Producto agregado con exito !')
+    except:
+        flash('¡ Error al agregar el Producto !')
+    return redirect(url_for('consultaProductos'))
+
+#REDIRECCIONA A LA PAGINA PARA CONSULTAR Productos
+@app.route('/Productos/Productos_General')
+def consultaProductos():
+    pro=Productos()
+    return render_template('Productos/Productos_General.html', pro = productos.consultaGeneral())
+
+#REDIRECCIONA A LA PAGINA PARA EDITAR Productos
+@app.route('/productos/EditarProductos',methods=['POST'])
+def editarTarjeta():
+    try:
+        pro=Productos()
+        pro.idProducto = request.form['idProducto']
+        pro.idCategoria = request.form['idCategoria']
+        pro.nombre = request.form['nombre']
+        pro.descripcion = request.form['descripcion']
+        pro.precio = request.form['precio']
+        pro.existencia = request.form['existencia']
+        pro.foto = request.form['foto']
+        pro.especificaciones = request.form['especificaciones']
+        
+        pro.estatus = 'A'
+        pro.editar()
+        flash('¡ Producto editado con exito !')
+    except:
+        flash('¡ Error al editar el producto !')
+
+    return redirect(url_for('consultaProducto'))
+
+#ELIMINAR Productos
+@app.route('/Productos/eliminar/<int:id>')
+def eliminarProducto(id):
+    try:
+        pro=Productos()
+        pro.eliminacionLogica(id)
+        flash('Producto eliminado con exito')
+    except:
+        flash('Error al eliminar el Producto')
+    return redirect(url_for('consultaProductos'))
+
+#CONSULTAR Producto ESPECIFICA
+@app.route('/Productos/<int:id>')
+def consultarProductos(id):
+    pro = Productos()
+    ur = Usuario()
+    return render_template('Productos/EditarProductos.html', pro = pro.consultaIndividuall(id))
+
+
 
 #_______________RUTAS RELACIONADAS CON LOS PEDIDOS_______________#
 #REDIRECCIONA A EL PEDIDO DEL CLIENTE
