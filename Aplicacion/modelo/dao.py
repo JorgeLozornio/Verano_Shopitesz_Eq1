@@ -67,12 +67,12 @@ class Producto(db.Model):
     @app.route('/Productos/consultarImagen/<int:id>')
     def consultarImagenProductos(id):
         pro=Productos()
-        return pro.consultarImagen(id)
+        return pro.consultarImagen(id).foto
     
     @app.route('/Productos/consultarEspecificaciones/<int:id>')
     def consultarEspecificacionesProductos(id):
         pro=Productos()
-        return pro.consultarEspecificaciones(id)
+        return pro.consultarEspecificaciones(id).especificaciones
     
     def agregar(self):
         db.session.add(self)
