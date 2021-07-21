@@ -6,76 +6,47 @@ Editar Pedido
 
 {% block content %}
 {{super()}}
-    <center><h1>Mis compras</h1></center>
-
-<table class="table table-success table-bordered border-light">
-        <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Detalles</th>
-                <th scope="col">Estatus</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row" style="text-align: center;"><img src="../../images/playeraTEC.jpg" width="70" height="70">
-                </th>
-                <td><b>Playera TECNM</b>
-                    <br>
-                    De: fcontreras849@accitesz<br>
-                    Num. Pedido: 2514
-                <td>Fecha: 11-Julio-2021
-                    <br>
-                    Cantidad: 2
-                    <br>
-                    Total: $ 1000.00 MXN
-                </td>
-                <td><b>En camino</b><br>Entrega estimada el Jueves </td>
-                <td><a class="btn btn-outline-success" type="button" style="background: darkgreen; color: floralwhite;" href="Seguimiento.html">Revisar Seguimiento</a>
-                    <br>
-                    <button style="background: darkred; color: floralwhite; text-align: end;">Cancelar pedido</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row" style="text-align: center;"><img src="../../images/teclado.jpg" width="70" height="70">
-                </th>
-                <td><b>Teclado Mecanico</b>
-                    <br>
-                    De: tgonzalez895@accitesz<br>
-                    Num. Pedido: 2514
-                <td>Fecha: 11-Julio-2021
-                    <br>
-                    Cantidad: 1
-                    <br>
-                    Total: $ 700.00 MXN
-                </td>
-                <td><b>En camino</b><br>Entrega estimada el Lunes </td>
-                <td><a class="btn btn-outline-success" type="button" style="background: darkgreen; color: floralwhite;" href="Seguimiento.html">Revisar Seguimiento</a>
-                    <br>
-                    <button style="background: darkred; color: floralwhite; text-align: end;">Cancelar pedido</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row" style="text-align: center;"><img src="../../images/Libreta.png" width="70" height="70">
-                </th>
-                <td><b>Playera TECNM</b>
-                    <br>
-                    De: ajuarez536@accitesz<br>
-                    Num. Pedido: 2471
-                <td>Fecha: 11-Julio-2021
-                    <br>
-                    Cantidad: 5
-                    <br>
-                    Total: $ 4150.00 MXN
-                </td>
-                <td><b>Entregado el 10 Jul. 2021</b></td>
-                <td><button style="background: darkslategray; color: floralwhite;">Comprar de nuevo</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div>
+    
+    <div class=" d-flex justify-content-center py-4" style="height: 800px">
+        <div >
+            <div class="card text-white bg-success mb-3 text-center shadow-lg" style="max-width: rem; width: 1800PX;">
+                <div class="card-header"> 
+                    <img src="../../static/img/tec.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                        Mi Pedidos</div>
+                <div class="card-body bg-light text-dark">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end py-4 px-4">
+                        <a href="{{url_for('usuarioCompras')}}" class="btn btn-success btn-lg"  role="button">Agregar</a>
+                    </div>
+                    <table class="table table-light">
+                        <th>Id Comprador</th>
+                        <th>Id Vendedor</th>
+                        <th>FechaRegistro</th>
+                        <th>FechaRecepcion</th>
+                        <th>Total</th>
+                        <th>Estatus</th>
+                        <th>Ver</th>
+                        {% for ped in Pedidos %}
+                            <tr>
+                                <td>{{ped.idComprador}}</td>
+                                <td>{{ped.idVendedor}}</td>
+                                <td>{{ped.fechaRegistro}}</td>
+                                <td>{{ped.fechaRecepcion}}</td>
+                                <td>{{ped.total}}</td>
+                                <td>{{ped.estatus}}</td>
+                                <td>
+                                    <a href="/Pedidos/{{ped.idPedido}}" class="btn btn-warning btn-lg"  role="button">Editar
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     {% endblock %}
 
