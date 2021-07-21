@@ -1,7 +1,7 @@
 from flask import Flask,render_template,request,redirect,url_for,flash
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
-from modelo.dao import Usuario, db,Categoria,Producto
+from modelo.dao import Usuario, db,Categoria,Producto, Tarjetas
 from flask_login import login_required,login_user,logout_user,current_user,login_manager
 
 app = Flask(__name__)

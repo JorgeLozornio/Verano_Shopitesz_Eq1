@@ -63,6 +63,18 @@
                                 <li><a class="dropdown-item" href="{{url_for('login')}}">Salir</a></li>
                             </ul>
                         </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" style="color: ivory;" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Catalogos
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{url_for('consultaUsuarios')}}">Usuarios</a></li>
+                                <li><a class="dropdown-item" href="{{url_for('consultaTarjetas')}}">Tarjetas</a></li>
+                                <li><a class="dropdown-item" href="{{url_for('consultaCategorias')}}">Categorias</a></li>
+                            </ul>
+                        </li>
     
                     </ul>
                     <form class="d-flex">
