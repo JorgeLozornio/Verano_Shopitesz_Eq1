@@ -194,12 +194,12 @@ def consultarProductos(id):
 #REDIRECCIONA A EL PEDIDO DEL CLIENTE
 @app.route('/usuarios/pedido')
 def usuarioPedido():
-    return render_template('pedidos/compra.html')
+    return render_template('pedidos/pedidos.html')
 
 #REDIRECCIONA A LAS COMPRAS HECHAS POR EL USUARIO
 @app.route('/usuarios/compras')
 def usuarioCompras():
-    return render_template('pedidos/pedidos.html')
+    return render_template('pedidos/compra.html')
 
 #REDIRECCIONA A LA PAGINA DE SEGUIMIENTO DEL PEDIDO
 @app.route('/usuarios/pedidos/seguimiento')
