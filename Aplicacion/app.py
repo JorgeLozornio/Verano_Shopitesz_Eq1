@@ -167,7 +167,7 @@ def agregarTarjeta():
 @app.route('/usuarios/Tarjetas')
 def consultaTarjetas():
     tar=Tarjetas()
-    return render_template('Tarjetas/ConsultaTarjetas.html',tarjetas=tar.consultaGeneral())
+    return render_template('Tarjetas/ConsultaTarjetas.html', Tarjetas = tar.consultaGeneral())
 
 #REDIRECCIONA A LA PAGINA PARA EDITAR TARJETAS
 @app.route('/usuarios/EditarTarjeta',methods=['POST'])
@@ -179,7 +179,7 @@ def editarTarjeta():
         tar.noTarjeta = request.form['noTarjeta']
         tar.saldo = request.form['saldo']
         tar.banco = request.form['banco']
-        tar.estatus=request.values.get("estatus","Inactiva")
+        tar.estatus = request.values.get("estatus","Inactiva")
         tar.editar()
         flash('¡ Tarjeta editada con exito !')
     except:
@@ -193,7 +193,7 @@ def eliminarTarjeta(id):
     try:
         tar=Tarjetas()
         #tarjeta.eliminar(id)
-        Tarjetas.eliminacionLogica(id)
+        tar.eliminacionLogica(id)
         flash('Tarjeta eliminada con exito')
     except:
         flash('Error al eliminar la Tarjeta')
@@ -202,8 +202,10 @@ def eliminarTarjeta(id):
 #CONSULTAR TARJETA ESPECIFICA
 @app.route('/Tarjetas/<int:id>')
 def consultarTarjeta(id):
-    tar=Tarjetas()
-    return render_template('Tarjetas/EditarTarjeta.html',tarjeta = tar.consultaIndividuall(id))
+    tar = Tarjetas()
+    ur = Usuario()
+    return render_template('Tarjetas/EditarTarjeta.html', tar = tar.consultaIndividuall(id))
+
 
 #_______________RUTAS RELACIONADAS CON LAS CATEGORIAS_______________#
 #CONSULTA GENERAL
