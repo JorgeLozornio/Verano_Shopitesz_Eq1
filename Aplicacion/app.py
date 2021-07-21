@@ -125,7 +125,7 @@ def nuevoProducto():
 @app.route('/Productos/AltaProductos',methods=['post'])
 def agregarProducto():
     try:
-        pro=Productos()
+        pro=Producto()
         pro.idProducto = request.form['idProducto']
         pro.idCategoria = request.form['idCategoria']
         pro.nombre = request.form['nombre']
@@ -145,14 +145,14 @@ def agregarProducto():
 #REDIRECCIONA A LA PAGINA PARA CONSULTAR Productos
 @app.route('/Productos/Productos_General')
 def consultaProductos():
-    pro=Productos()
+    pro=Producto()
     return render_template('Productos/Productos_General.html', pro = productos.consultaGeneral())
 
 #REDIRECCIONA A LA PAGINA PARA EDITAR Productos
 @app.route('/Productos/editarProductos',methods=['POST'])
 def editarTarjeta():
     try:
-        pro=Productos()
+        pro=Producto()
         pro.idProducto = request.form['idProducto']
         pro.idCategoria = request.form['idCategoria']
         pro.nombre = request.form['nombre']
@@ -174,7 +174,7 @@ def editarTarjeta():
 @app.route('/Productos/eliminar/<int:id>')
 def eliminarProducto(id):
     try:
-        pro=Productos()
+        pro=Producto()
         pro.eliminacionLogica(id)
         flash('Producto eliminado con exito')
     except:
@@ -184,7 +184,7 @@ def eliminarProducto(id):
 #CONSULTAR Producto ESPECIFICA
 @app.route('/Productos/<int:id>')
 def consultarProductos(id):
-    pro = Productos()
+    pro = Producto()
     ur = Usuario()
     return render_template('Productos/editarProductos.html', pro = pro.consultaIndividuall(id))
 
