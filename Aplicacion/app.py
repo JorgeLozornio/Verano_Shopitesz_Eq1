@@ -152,8 +152,11 @@ def nuevaTarjeta():
 def agregarTarjeta():
     try:
         tar=Tarjetas()
-        tar.noTarjeta=request.form['noTarjeta']
-        tar.estatus='A'
+        tar.idUsuario = request.form['idUsuario']
+        tar.noTarjeta = request.form['noTarjeta']
+        tar.saldo = request.form['saldo']
+        tar.banco = request.form['banco']
+        tar.estatus = 'A'
         tar.agregar()
         flash('¡ Tarjeta agregada con exito !')
     except:
@@ -171,8 +174,11 @@ def consultaTarjetas():
 def editarTarjeta():
     try:
         tar=Tarjetas()
-        tar.idTarjeta=request.form['id']
-        tar.nombre=request.form['nombre']
+        tar.idTarjeta = request.form['idTarjeta']
+        tar.idUsuario = request.form['idUsuario']
+        tar.noTarjeta = request.form['noTarjeta']
+        tar.saldo = request.form['saldo']
+        tar.banco = request.form['banco']
         tar.estatus=request.values.get("estatus","Inactiva")
         tar.editar()
         flash('¡ Tarjeta editada con exito !')
