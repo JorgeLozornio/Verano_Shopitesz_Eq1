@@ -20,7 +20,7 @@ Alta Tarjetas
                     <form action="/usuarios/AltaTarjeta" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nombre">Usuario:</label>
-                            <input type="text" name="Nombre" class="input" value='Nombre Completo' required>
+                            <input type="number" name="idUsuario" class="input" min="0" required>
                         </div>
                         <br>
                         <div class="form-group">
@@ -37,7 +37,12 @@ Alta Tarjetas
                             <label>Banco:</label>
                             <input type="text" name="banco" class="input" required>
                         </div>
-                        
+                        <div class="form-control">
+                            <label for="estatus">Estatus:</label><br>
+                            <input type="checkbox" name="estatus" value="A" checked>Activo
+                            <br>
+                            <input type="checkbox" name="estatus" value="I"> Inactivo
+                        </div>
                         <br>
                         <button type="submit" class="btn btn-primary">Registrar</button>
                         <a href="/usuarios/Tarjetas" class="btn btn-danger">Cancelar</a>
