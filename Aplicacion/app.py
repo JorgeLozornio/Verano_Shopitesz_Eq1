@@ -129,12 +129,14 @@ def agregarProducto():
         pro.idCategoria = request.form['idCategoria']
         pro.nombre = request.form['nombre']
         pro.descripcion = request.form['descripcion']
-        pro.precioVenta = request.form['precio']
+        pro.precioVenta = request.form['precioventa']
         pro.existencia = request.form['existencia']
         imagen=request.files['imagen'].stream.read()
         if imagen:
             pro.foto=imagen
-        pro.especificaciones = request.form['especificaciones']
+        esp=request.files['especificaciones'].stream.read()
+        if esp:
+            pro.especificaciones=esp
         
         pro.estatus = 'A'
         pro.agregar()
@@ -158,7 +160,7 @@ def editarTProducto():
         pro.idCategoria = request.form['idCategoria']
         pro.nombre = request.form['nombre']
         pro.descripcion = request.form['descripcion']
-        pro.precioVenta = request.form['precio']
+        pro.precioVenta = request.form['precioventa']
         pro.existencia = request.form['existencia']
         imagen=request.files['imagen'].stream.read()
         if imagen:
