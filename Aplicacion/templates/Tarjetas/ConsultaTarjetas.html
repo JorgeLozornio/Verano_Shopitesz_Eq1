@@ -8,7 +8,6 @@ Alta Tarjetas
 {{super()}}
 
 <div>
-    
     <div class=" d-flex justify-content-center py-4" style="height: 800px">
         <div >
             <div class="card text-white bg-success mb-3 text-center shadow-lg" style="max-width: rem; width: 1800PX;">
@@ -26,6 +25,7 @@ Alta Tarjetas
                         <th>SALDO</th>
                         <th>BANCO</th>
                         <th>ESTATUS</th>
+                        <th></th>
                         {% for tar in Tarjetas %}
                             <tr>
                                 <td>{{tar.idTarjeta}}</td>
@@ -34,6 +34,14 @@ Alta Tarjetas
                                 <td>{{tar.saldo}}</td>
                                 <td>{{tar.banco}}</td>
                                 <td>{{tar.estatus}}</td>
+                                <td>
+                                    <a href="/Tarjetas/{{tar.idTarjeta}}" class="btn btn-warning btn-lg"  role="button">Editar
+                                    <span class="glyphicon glyphicon-eye-open"></span>                                   
+                                    </a>
+                                    <a href="/Tarjetas/{{tar.idTarjeta}}" class="btn btn-warning btn-lg"  role="button">Eliminar
+                                        <span class="glyphicon glyphicon-eye-open"></span>                                   
+                                        </a>
+                                </td>
                             </tr>
                         {% endfor %}
                     </table>
