@@ -207,14 +207,14 @@ def consultarProductos(id):
 
 #_______________RUTAS RELACIONADAS CON LOS PEDIDOS_______________#
 #REDIRECCIONA A EL PEDIDO DEL CLIENTE
-@app.route('/usuarios/pedido')
+@app.route('/pedidos/pedido')
 def usuarioPedido():
-    return render_template('pedidos/compra.html')
+    return render_template('pedidos/pedidos.html')
 
 #REDIRECCIONA A LAS COMPRAS HECHAS POR EL USUARIO
 @app.route('/usuarios/compras')
 def usuarioCompras():
-    return render_template('pedidos/pedidos.html')
+    return render_template('pedidos/compra.html')
 
 #REDIRECCIONA A LA PAGINA DE SEGUIMIENTO DEL PEDIDO
 @app.route('/usuarios/pedidos/seguimiento')
@@ -365,10 +365,6 @@ def eliminarCategoria(id):
 
 
 #__RUTAS RELACIONADAS CON LOS PEDIDOS__#
-#REDIRECCIONA A LA PAGINA DE AGREGAR PEDIDOS
-@app.route('/Pedidos/nuevoPedido')
-def nuevoPedido():
-    return render_template('Pedidos/Compra.html')
 
 #REDIRECCIONA A LA PAGINA PARA AGREGAR PEDIDOS
 @app.route('/Pedidos/Compra',methods=['post'])
