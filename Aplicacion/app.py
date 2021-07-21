@@ -146,7 +146,7 @@ def agregarProducto():
 @app.route('/Productos/Productos_General')
 def consultaProductos():
     pro=Producto()
-    return render_template('Productos/Productos_General.html', pro = productos.consultaGeneral())
+    return render_template('Productos/Productos_General.html', productos = pro.consultaGeneral())
 
 #REDIRECCIONA A LA PAGINA PARA EDITAR Productos
 @app.route('/Productos/editarProductos',methods=['POST'])
