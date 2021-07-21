@@ -62,7 +62,7 @@ class Producto(db.Model):
         return self.query.all()
     
     def consultaIndividuall(self,id):
-        return Tarjetas.query.get(id)
+        return Producto.query.get(id)
         
     def consultarFoto(self,id):
         return self.consultaIndividuall(id).foto
