@@ -28,16 +28,17 @@ Alta Tarjetas
                         <th>FOTO</th>
                         <th>ESPECIFICACIONES</th>
                         <th>ESTATUS</th>
+                        <th>VER</th>
                         {% for pro in productos %}
                             <tr>
                                 <td>{{pro.idProducto}}</td>
                                 <td>{{pro.idCategoria}}</td>
-                                <td>{{pro.Nombre}}</td>
+                                <td>{{pro.nombre}}</td>
                                 <td>{{pro.descripcion}}</td>
-                                <td>{{pro.precioventa}}</td>
+                                <td>{{pro.precioVenta}}</td>
                                 <td>{{pro.existencia}}</td>
-                                <td>{{pro.foto}}</td>
-                                <td>{{pro.especificaciones}}</td>
+                                <td><img src="/Productos/consultarFoto/{{pro.idProducto}}" width="100px" height="80px"></td>
+                                <td><img src="/Productos/consultarEspecificaciones/{{pro.idProducto}}" width="100px" height="80px"></td>
                                 <td>{{pro.estatus}}</td>
                                 <td>
                                     <a href="/Productos/{{pro.idProducto}}" class="btn btn-warning btn-lg"  role="button">Editar

@@ -63,13 +63,13 @@ class Producto(db.Model):
     
     def consultaIndividuall(self,id):
         return Tarjetas.query.get(id)
-
+        
     def consultarFoto(self,id):
         return self.consultaIndividuall(id).foto
     
     def consultarEspecificaciones(self,id):
-        return self.consultaIndividuall(id).especificaciones
-    
+        return self.consultaIndividuall(id).especificaciones    
+
     def agregar(self):
         db.session.add(self)
         db.session.commit()

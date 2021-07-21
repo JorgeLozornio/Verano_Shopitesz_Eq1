@@ -201,7 +201,7 @@ def eliminarProducto(id):
 def consultarProductos(id):
     pro = Producto()
     ur = Usuario()
-    return render_template('Productos/editarProductos.html', pro = pro.consultaIndividuall(id))
+    return render_template('Productos/editarProducto.html', pro = pro.consultaIndividuall(id))
 
 
 
