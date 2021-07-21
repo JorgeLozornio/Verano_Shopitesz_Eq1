@@ -126,13 +126,14 @@ def nuevoProducto():
 def agregarProducto():
     try:
         pro=Producto()
-        pro.idProducto = request.form['idProducto']
         pro.idCategoria = request.form['idCategoria']
         pro.nombre = request.form['nombre']
         pro.descripcion = request.form['descripcion']
-        pro.precio = request.form['precio']
+        pro.precioVenta = request.form['precio']
         pro.existencia = request.form['existencia']
-        pro.foto = request.form['foto']
+        imagen=request.files['imagen'].stream.read()
+        if imagen:
+            pro.foto=imagen
         pro.especificaciones = request.form['especificaciones']
         
         pro.estatus = 'A'
@@ -157,9 +158,11 @@ def editarTProducto():
         pro.idCategoria = request.form['idCategoria']
         pro.nombre = request.form['nombre']
         pro.descripcion = request.form['descripcion']
-        pro.precio = request.form['precio']
+        pro.precioVenta = request.form['precio']
         pro.existencia = request.form['existencia']
-        pro.foto = request.form['foto']
+        imagen=request.files['imagen'].stream.read()
+        if imagen:
+            pro.foto=imagen
         pro.especificaciones = request.form['especificaciones']
         
         pro.estatus = 'A'
@@ -194,12 +197,12 @@ def consultarProductos(id):
 #REDIRECCIONA A EL PEDIDO DEL CLIENTE
 @app.route('/usuarios/pedido')
 def usuarioPedido():
-    return render_template('pedidos/pedidos.html')
+    return render_template('pedidos/compra.html')
 
 #REDIRECCIONA A LAS COMPRAS HECHAS POR EL USUARIO
 @app.route('/usuarios/compras')
 def usuarioCompras():
-    return render_template('pedidos/compra.html')
+    return render_template('pedidos/pedidos.html')
 
 #REDIRECCIONA A LA PAGINA DE SEGUIMIENTO DEL PEDIDO
 @app.route('/usuarios/pedidos/seguimiento')
@@ -348,9 +351,6 @@ def eliminarCategoria(id):
         flash('Error al eliminar la categoria')
     return redirect(url_for('consultaCategorias'))
 
-if __name__=='__main__':
-    db.init_app(app)
-    app.run(debug=True)
 
 #__RUTAS RELACIONADAS CON LOS PEDIDOS__#
 #REDIRECCIONA A LA PAGINA DE AGREGAR PEDIDOS
@@ -444,3 +444,8 @@ def eliminarPedido(id):
 def consultarPedido(id):
     ped=Pedidos()
     return render_template('Pedidos/EditarPedido.html',ped = ped.consultaIndividuall(id))
+
+
+if __name__=='__main__':
+    db.init_app(app)
+    app.run(debug=True)
