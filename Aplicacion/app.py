@@ -117,12 +117,12 @@ def productos():
     return render_template('productos/productos_general.html')
 
 #REDIRECCIONA A LA PAGINA DE AGREGAR PRODUOCTOS
-@app.route('/Productos/registrarProducto')
+@app.route('/Productos/AltaProductos')
 def nuevoProducto():
-    return render_template('Productos/registrarProductos.html')
+    return render_template('Productos/altaProductos.html')
 
 #REDIRECCIONA A LA PAGINA PARA AGREGAR Productos
-@app.route('/Productos/registrarProductos',methods=['post'])
+@app.route('/Productos/AltaProductos',methods=['post'])
 def agregarProducto():
     try:
         pro=Productos()
@@ -149,7 +149,7 @@ def consultaProductos():
     return render_template('Productos/Productos_General.html', pro = productos.consultaGeneral())
 
 #REDIRECCIONA A LA PAGINA PARA EDITAR Productos
-@app.route('/productos/EditarProductos',methods=['POST'])
+@app.route('/Productos/editarProductos',methods=['POST'])
 def editarTarjeta():
     try:
         pro=Productos()
@@ -186,7 +186,7 @@ def eliminarProducto(id):
 def consultarProductos(id):
     pro = Productos()
     ur = Usuario()
-    return render_template('Productos/EditarProductos.html', pro = pro.consultaIndividuall(id))
+    return render_template('Productos/editarProductos.html', pro = pro.consultaIndividuall(id))
 
 
 
