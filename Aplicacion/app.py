@@ -351,3 +351,96 @@ def eliminarCategoria(id):
 if __name__=='__main__':
     db.init_app(app)
     app.run(debug=True)
+
+#__RUTAS RELACIONADAS CON LOS PEDIDOS__#
+#REDIRECCIONA A LA PAGINA DE AGREGAR PEDIDOS
+@app.route('/Pedidos/nuevoPedido')
+def nuevoPedido():
+    return render_template('Pedidos/Compra.html')
+
+#REDIRECCIONA A LA PAGINA PARA AGREGAR PEDIDOS
+@app.route('/Pedidos/Compra',methods=['post'])
+def agregarPedido():
+    try:
+        ped=Pedidos()
+        ped.idPedido=request.form['idPedido']
+        ped.idComprador=request.form['idComprador']
+        ped.idVendedor=request.form['idVendedor']
+        ped.idTarjeta=request.form['idTarjeta']
+        ped.fechaRegistro=request.form['fechaRegistro']
+        ped.fechaAtencion=request.form['fechaAtencion']
+        ped.fechaRecepcion=request.form['fechaRecepcion']
+        ped.fechaCierre=request.form['fechaCierre']
+        ped.total=request.form['total']
+        ped.estatus=request.form.get('estatus')
+        print(ped.idPedido)
+        print(ped.idComprador)
+        print(ped.idVendedor)
+        print(ped.idTarjeta)
+        print(ped.fechaRegistro)
+        print(ped.fechaAtencion)
+        print(ped.fechaRecepcion)
+        print(ped.fechaCierre)
+        print(ped.total)
+        print(ped.estatus)
+        ped.agregar()
+        flash('¡ Pedido agregada con exito !')
+    except:
+        flash('¡ Error al agregar la Pedido !')
+    return redirect(url_for('consultaPedidos'))
+
+#REDIRECCIONA A LA PAGINA PARA CONSULTAR PEDIDOS
+@app.route('/Pedidos/Pedidos')
+def consultaPedidos():
+    ped=Pedidos()
+    return render_template('Pedidos/Pedidos.html',Pedidos=ped.consultaGeneral())
+
+#REDIRECCIONA A LA PAGINA PARA EDITAR PEDIDOS
+@app.route('/Pedidos/EditarPedido',methods=['POST'])
+def editarPedido():
+    try:
+        ped=Pedidos()
+        ped.idPedido=request.form['idPedido']
+        ped.idComprador=request.form['idComprador']
+        ped.idVendedor=request.form['idVendedor']
+        ped.idTarjeta=request.form['idTarjeta']
+        ped.fechaRegistro=request.form['fechaRegistro']
+        ped.fechaAtencion=request.form['fechaAtencion']
+        ped.fechaRecepcion=request.form['fechaRecepcion']
+        ped.fechaCierre=request.form['fechaCierre']
+        ped.total=request.form['total']
+        ped.estatus=request.form.get('estatus')
+        print(ped.idPedido)
+        print(ped.idComprador)
+        print(ped.idVendedor)
+        print(ped.idTarjeta)
+        print(ped.fechaRegistro)
+        print(ped.fechaAtencion)
+        print(ped.fechaRecepcion)
+        print(ped.fechaCierre)
+        print(ped.total)
+        print(ped.estatus)
+        ped.editar()
+        flash('¡ Pedido editada con exito !')
+    except:
+        flash('¡ Error al editar el Pedido !')
+
+    return redirect(url_for('consultaPedidos'))
+
+#ELIMINAR PEDIDOS
+@app.route('/Pedidos/eliminar/<int:id>')
+def eliminarPedido(id):
+    try:
+        ped=Pedidos()
+        #pedido.eliminar(id)
+        ped.eliminacionLogica(id)
+        flash('Pedido eliminado con exito')
+    except:
+        flash('Error al eliminar el Pedido')
+    return redirect(url_for('consultaPedidos'))
+
+#CONSULTAR PEDIDO ESPECIFICO
+@app.route('/Pedidos/<int:id>')
+def consultarPedido(id):
+    ped=Pedidos()
+    return render_template('Pedidos/EditarPedido.html',ped = ped.consultaIndividuall(id))
