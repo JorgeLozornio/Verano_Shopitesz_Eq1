@@ -116,6 +116,16 @@ def eliminarUsuario(id):
 def productos():
     return render_template('productos/productos_general.html')
 
+@app.route('/Productos/consultarFoto/<int:id>')
+def consultarFotoProductos(id):
+    pro=productos()
+    return pro.consultarfoto(id)
+
+@app.route('/Productos/consultarEspecificaciones/<int:id>')
+def consultarEspecificacionesProductos(id):
+    pro=productos()
+    return pro.consultarEspecificaciones(id)
+
 #REDIRECCIONA A LA PAGINA DE AGREGAR PRODUOCTOS
 @app.route('/Productos/AltaProductos')
 def nuevoProducto():
