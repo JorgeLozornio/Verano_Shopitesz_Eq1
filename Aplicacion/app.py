@@ -199,7 +199,6 @@ def consultarTarjeta(id):
     tar=Tarjetas()
     return render_template('Tarjetas/EditarTarjeta.html',tarjeta = tar.consultaIndividuall(id))
 
-
 #_______________RUTAS RELACIONADAS CON LAS CATEGORIAS_______________#
 #CONSULTA GENERAL
 @app.route('/Categorias')
