@@ -21,19 +21,19 @@
                         <div class="card-body bg-light text-dark">
                         <h5 class="card-title">Inicio de Sesión</h5>
                         
-                            <form action="#">
+                            <form action="/usuarios/validarSesion" method="post">
                                                                 
                                 <div class="form-floating mb-3 shadow-lg">
-                                    <input type="email" class="form-control" id="validationCustom01" placeholder="name@example.com" required>
+                                    <input type="email" class="form-control" id="validationCustom01" name="correo" placeholder="name@example.com" required>
                                     <label for="validationCustom01">Correo</label>
                                     <div class="valid-feedback">Correcto</div>
                                   </div>
                                   <div class="form-floating shadow-lg">
-                                    <input type="password" class="form-control" id="validationCustom02" placeholder="Password" required>
+                                    <input type="password" class="form-control" id="validationCustom02" name="password" placeholder="Password" required>
                                     <label for="validationCustom02">Contraseña</label>
                                   </div><br>
                                   <div class="d-grid">
-                                    <button class="btn btn-success" type="submit" onclick="location.href='http://127.0.0.1:5000/productos'">Continuar</button>
+                                    <button class="btn btn-success" type="submit">Continuar</button>
                                   </div><br>
                                   
                             </form>
@@ -41,6 +41,7 @@
                             <p class="card-text">¿No tienes cuenta?  <a href="{{url_for('registroClientes')}}">Registrate</a></p>
                             
                             <a href="">¿Olvidaste tu contraseña?</a> <br>
+
 
                         </div>
                     </div>

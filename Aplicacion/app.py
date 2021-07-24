@@ -1,8 +1,9 @@
-from flask import Flask,render_template,request,redirect,url_for,flash
+from flask import Flask,render_template,request,redirect,url_for,flash, session, abort
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
 from modelo.dao import Usuario, db,Categoria,Producto, Tarjetas, Pedidos
-from flask_login import login_required,login_user,logout_user,current_user,login_manager
+from flask_login import login_required,login_user,logout_user,current_user,login_manager, LoginManager
+from datetime import timedelta
 
 app = Flask(__name__)
 
@@ -14,8 +15,63 @@ app.secret_key='Cl4v3'
 
 #_______________RUTAS RELACIONADAS CON LOS USUARIOS_______________#
 #REDIRECCIONA AL LOGIN
-@app.route("/")
+login_manager=LoginManager()
+login_manager.init_app(app)
+login_manager.login_view='mostrar_login'
+login_manager.login_message='¡ Tu sesión expiró !'
+login_manager.login_message_category="info"
+
+# Urls defininas para el control de usuario
+@app.before_request
+def before_request():
+    session.permanent=True
+    app.permanent_session_lifetime=timedelta(minutes=10)
+
+
+@app.route('/usuarios/iniciarSesion')
+def mostrar_login():
+    if current_user.is_authenticated:
+        return render_template('productos/Productos_General.html')
+    else:
+        return render_template('usuarios/login.html')
+
+@login_manager.user_loader
+def cargar_usuario(id):
+    return Usuario.query.get(int(id))
+
+@app.route('/usuarios/nuevo')
+def nuevoUsuario():
+    if current_user.is_authenticated and not current_user.is_admin():
+        return render_template('productos/Productos_General.html')
+    else:
+        return render_template('usuarios/agregar.html')
+
+@app.route("/usuarios/validarSesion",methods=['POST'])
 def login():
+    correo=request.form['correo']
+    password=request.form['password']
+    usuario=Usuario()
+    user=usuario.validar(correo,password)
+    if user!=None:
+        login_user(user)
+        return render_template('productos/Productos_General.html')
+    else:
+        flash('Nombre de usuario o contraseña incorrectos')
+        print('Error de inicio de sesión')
+        return render_template('usuarios/login.html')
+
+@app.route('/Usuarios/cerrarSesion')
+@login_required
+def cerrarSesion():
+    logout_user()
+    return redirect(url_for('mostrar_login'))
+
+
+#_______________RUTAS RELACIONADAS CON LOS USUARIOS_______________#
+#REDIRECCIONA AL LOGIN
+
+@app.route("/")
+def inicio():
     return render_template('usuarios/login.html')
 
 #REDIRECCION AL REGISTRO UTILIZADO POR LOS CLIENTES
@@ -35,10 +91,10 @@ def consultaUsuarios():
     us=Usuario()
     return render_template('usuarios/ConsultaGeneral.html',usuarios=us.consultaGeneral())
 
-# #REDIRECCIONA A LA PAGINA DE AGREGAR USUARIOS
-@app.route('/usuarios/nuevo')
-def nuevoUsuario():
-    return render_template('usuarios/agregar.html')
+# # #REDIRECCIONA A LA PAGINA DE AGREGAR USUARIOS
+# @app.route('/usuarios/nuevo')
+# def nuevoUsuario():
+#     return render_template('usuarios/agregar.html')
 
 # #AGREGAR USUARIOS
 @app.route('/usuarios/agregar',methods=['post'])
