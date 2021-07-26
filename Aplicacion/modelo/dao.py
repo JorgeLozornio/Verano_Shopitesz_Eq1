@@ -111,6 +111,8 @@ class Usuario(UserMixin,db.Model):
         self.password_hash=generate_password_hash(password)
 
     def validarPassword(self,password):
+        print(self.password_hash)
+        print(password)
         return check_password_hash(self.password_hash,password)
     #Definición de los métodos para el perfilamiento
     def is_authenticated(self):
@@ -128,7 +130,7 @@ class Usuario(UserMixin,db.Model):
         return self.idUsuario
 
     def is_admin(self):
-        if self.tipo=='Administrador':
+        if self.tipo=='Admin':
             return True
         else:
             return False
@@ -145,7 +147,6 @@ class Usuario(UserMixin,db.Model):
     #Definir el método para la autenticacion
     def validar(self,email,password):
         usuario=Usuario.query.filter(Usuario.email==email).first()
-        print(email)
         if usuario!=None and usuario.validarPassword(password) and usuario.is_active():
             return usuario
         else:

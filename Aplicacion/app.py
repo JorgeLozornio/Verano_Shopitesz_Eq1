@@ -43,7 +43,7 @@ def cargar_usuario(id):
 def nuevoUsuario():
     if current_user.is_authenticated and not current_user.is_admin():
         return render_template('productos/Productos_General.html')
-    else:
+    else: 
         return render_template('usuarios/agregar.html')
 
 @app.route("/usuarios/validarSesion",methods=['POST'])

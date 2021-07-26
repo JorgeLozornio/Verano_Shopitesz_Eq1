@@ -47,38 +47,20 @@
                     <form action="#">
 
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="validationCustom03" value="Jorge" required>
-                            <label for="validationCustom03">Nombre</label>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="validationCustom03" value="Lozornio" required>
-                                    <label for="validationCustom03">Apellido Paterno</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="validationCustom03" value="Vazquez" required>
-                                    <label for="validationCustom03">Apellido Materno</label>
-                                </div>
-                            </div>
-                        </div>                                
+                            <input type="text" class="form-control" id="validationCustom03" value="{{current_user.nombreCompleto}}" required>
+                            <label for="validationCustom03">Nombre Completo</label>
+                        </div>                              
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="validationCustom03" value="Av Juarez 2" required>
+                            <input type="text" class="form-control" id="validationCustom03" value="{{current_user.direccion}}" required>
                             <label for="validationCustom03">Dirección</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="tel" class="form-control" id="validationCustom03" value="3511234567" required>
+                            <input type="tel" class="form-control" id="validationCustom03" value="{{current_user.telefono}}" required>
                             <label for="validationCustom03">Telefono</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="validationCustom01" value="jorge@gmail.com" required>
+                            <input type="email" class="form-control" id="validationCustom01" value="{{current_user.email}}" required>
                             <label for="validationCustom01">Correo</label>
-                          </div>
-                          <div class="form-floating">
-                            <input type="password" class="form-control" id="validationCustom02" value="1234567890" required>
-                            <label for="validationCustom02">Contraseña</label>
                           </div><br>
                                                       
                           <br>

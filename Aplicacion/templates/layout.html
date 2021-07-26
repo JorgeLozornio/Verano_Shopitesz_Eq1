@@ -67,6 +67,7 @@
                         </ul>
                     </li>
 
+                    {% if current_user.is_admin() %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" style="color: ivory;" href="#" id="navbarDropdown"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -78,6 +79,7 @@
                             <li><a class="dropdown-item" href="{{url_for('consultaCategorias')}}">Categorias</a></li>
                         </ul>
                     </li>
+                    {%endif%}
                     <li>
                         <form class="d-flex">
 
