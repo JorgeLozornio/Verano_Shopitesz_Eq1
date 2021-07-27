@@ -376,6 +376,21 @@ def consultaCategorias():
     cat=Categoria()
     return render_template('categorias/ConsultaGeneral.html',categorias=cat.consultaGeneral())
 
+#TRANSFORMAR A JSON
+@app.route('/Categorias/ajax')
+def getCategoriasAjax():
+    categoria=Categoria()
+    lista=categoria.consultaGeneral()
+    listaCat = []
+
+    for cat in lista:
+        catDic={'idCategoria':cat.idCategoria, 'nombre':cat.nombre, 'estatus':cat.estatus}
+        listaCat.append(catDic)
+
+    print(listaCat)
+    var_jason = json.dumps(listaCat)
+    return var_jason
+
 #CONSULTA IMAGEN
 @app.route('/Categorias/consultarImagen/<int:id>')
 def consultarImagenCategoria(id):

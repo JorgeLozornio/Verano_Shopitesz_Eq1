@@ -16,8 +16,7 @@ class Categoria(db.Model):
     estatus = Column( String, nullable = True)
 
     def consultaGeneral(self):
-        return self.query.all()
-        #return self.query.filter(Categoria.estatus=='Activa').all()
+        return self.query.filter(Categoria.estatus=='A').all()
 
     def consultaIndividuall(self,id):
         return Categoria.query.get(id)
