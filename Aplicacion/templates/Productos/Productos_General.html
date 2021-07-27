@@ -19,20 +19,16 @@ Consulta Productos
                         <a href="{{url_for('nuevoProducto')}}" class="btn btn-success btn-lg" role="button">Agregar</a>
                     </div>
                     <table class="table table-light">
-                        <th>IDPRODUCTO</th>
-                        <th>IDCATEGORIA</th>
-                        <th>NOMBRE</th>
-                        <th>DESCRIPCION</th>
-                        <th>PRECIOVENTA</th>
-                        <th>EXISTENCIA</th>
-                        <th>FOTO</th>
-                        <th>ESPECIFICACIONES</th>
-                        <th>ESTATUS</th>
-                        <th>VER</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                         {% for pro in productos %}
                             <tr>
-                                <td>{{pro.idProducto}}</td>
-                                <td>{{pro.idCategoria}}</td>
                                 <td>{{pro.nombre}}</td>
                                 <td>{{pro.descripcion}}</td>
                                 <td>{{pro.precioVenta}}</td>
