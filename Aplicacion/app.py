@@ -619,7 +619,7 @@ def eliminarPaqueteria(id):
 #__RUTAS RELACIONADAS CON LOS DETALLE PEDIDOS__#
 
 #REDIRECCIONA A LA PAGINA PARA AGREGAR DETALLE PEDIDOS
-@app.route('/Pedidos/Pedidos',methods=['post'])
+@app.route('/Pedidos/DetallePedidos',methods=['post'])
 def agregarDetallePedido():
     try:
         det=DetallePedidos()
