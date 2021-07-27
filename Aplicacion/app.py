@@ -610,7 +610,7 @@ def editarPaqueteria():
 def eliminarPaqueteria(id):
     try:
         Paqueteria=PAQUETERIA()
-        paqueteria.eliminacionLogica(id)
+        Paqueteria.eliminacionLogica(id)
         flash('paqueteria eliminada con exito')
     except:
         flash('Error al eliminar la paqueteria')
