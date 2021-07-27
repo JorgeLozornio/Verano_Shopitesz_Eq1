@@ -558,7 +558,7 @@ if __name__=='__main__':
 #CONSULTA GENERAL
 @app.route('/Paqueteria')
 def consultaPaqueteria():
-    paq=Paqueteria()
+    paq=PAQUETERIA()
     return render_template('paqueteria/ConsultaGeneral.html',paqueteria=paq.consultaGeneral())
 
 #REDIRECCIONA A LA PAGINA DE AGREGAR CATEGORIAS
@@ -570,7 +570,7 @@ def nuevaPaqueteria():
 @app.route('/Paqueteria/agregar',methods=['post'])
 def agregarPaqueteria():
     try:
-        paq=Paqueteria()
+        paq=PAQUETERIA()
         paq.nombre=request.form['nombre']
         paq.paginaweb=request.form['paginaweb']
         paq.precio=request.form['precio']
@@ -585,14 +585,14 @@ def agregarPaqueteria():
 #CONSULTAR PAQUETERIA ESPECIFICA
 @app.route('/Paqueteria/<int:id>')
 def consultarPaqueteria(id):
-    paq=Paqueteria()
+    paq=PAQUETERIA()
     return render_template('paqueteria/editar.html',paq=paq.consultaIndividuall(id))
 
 #EDITAR PAQUETERIA
 @app.route('/Paqueteria/editar',methods=['POST'])
 def editarPaqueteria():
     try:
-        paq=Paqueteria()
+        paq=PAQUETERIA()
         paq.nombre=request.form['nombre']
         paq.paginaweb=request.form['paginaweb']
         paq.precio=request.form['precio']
@@ -609,7 +609,7 @@ def editarPaqueteria():
 @app.route('/Paqueteria/eliminar/<int:id>')
 def eliminarPaqueteria(id):
     try:
-        Paqueteria=Paqueteria()
+        Paqueteria=PAQUETERIA()
         paqueteria.eliminacionLogica(id)
         flash('paqueteria eliminada con exito')
     except:
