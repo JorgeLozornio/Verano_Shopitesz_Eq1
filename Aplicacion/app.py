@@ -1,9 +1,10 @@
 from flask import Flask,render_template,request,redirect,url_for,flash, session, abort
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
-from modelo.dao import Usuario, db,Categoria,Producto, Tarjetas, Pedidos
+from modelo.dao import Usuario, db,Categoria,Producto, Tarjetas, Pedidos, Carrito
 from flask_login import login_required,login_user,logout_user,current_user,login_manager, LoginManager
 from datetime import timedelta
+import json
 
 app = Flask(__name__)
 
@@ -279,10 +280,27 @@ def usuarioSegPedido():
 
 
 #_______________RUTAS RELACIONADAS CON LA CESTA_______________#
-#REDIRECCIONA A LA CESTA DEL CLIENTE
-@app.route('/usuarios/cesta')
+# Seccion para el carrito
+@app.route('/carrito/agregar/<data>', methods = ['get'])
+def agregarProductoCarrito(data):
+    msg = ''
+    if current_user.is_authenticated and current_user.is_comprador():
+        datos = json.loads(data)
+        carrito = Carrito()
+        carrito.idProducto = datos['idProducto']
+        carrito.idUsuario = current_user.idUsuario
+        carrito.cantidad = datos['cantidad']
+        carrito.agregar()
+        msg={'estatus':'ok','mensaje':'Producto agregado a la cesta.'}
+    return json.dumps(msg)
+
+@app.route("/Cesta")
+@login_required
 def cesta():
-    return render_template('cesta/cesta.html')
+    if current_user.is_authenticated:
+        carrito = Carrito()
+        return render_template('Cesta/Cesta.html', cesta = carrito.consultaGeneral(current_user.idUsuario))
+# fin de la seccion del carrito
 
 
 #_______________RUTAS RELACIONADAS CON LAS TARJETAS_______________#
