@@ -1,9 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column,Integer,String,BLOB,ForeignKey,Float
+from sqlalchemy import Column,Integer,String,BLOB,ForeignKey,Float, Date
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
-
+import datetime
 
 db = SQLAlchemy()
 
@@ -248,3 +248,22 @@ class Pedidos(db.Model):
         ped = self.consultaIndividuall(id)
         ped.estatus='Inactiva'
         ped.editar()
+
+ #TABLA DE CARRITO
+class Carrito(db.Model):
+    __tablename__='Carrito'
+    idCarrito = Column(Integer, primary_key = True)
+    idUsuario = Column(Integer, ForeignKey('Usuarios.idUsuario'))
+    idProducto = Column(Integer, ForeignKey('Productos.idProducto'))
+    fecha = Column(Date, default = datetime.date.today())
+    cantidad = Column(Integer, nullable = False, default = 1)
+    estatus = Column(String, nullable = False, default = 'Pendiente')
+    producto = relationship('Producto', backref = 'carrito', lazy = 'select')
+    usuario = relationship('Usuario', backref = 'carrito', lazy = 'select')
+
+    def agregar(self):
+        db.session.add(self)
+        db.session.commit()
+        
+    def consultaGeneral(self,idUsuario):
+        return self.query.filter(Carrito.idUsuario == idUsuario).all()
