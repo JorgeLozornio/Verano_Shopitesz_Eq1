@@ -28,6 +28,11 @@
                         </div>
                         <br>
                         <div class="form-group">
+                            <label for="idProducto">ID Producto:</label>
+                            <input type="text" name="idProducto" class="input" value='{{car.idProducto}}' readonly>
+                        </div>
+                        <br>
+                        <div class="form-group">
                             <label for="noTarjeta">Num Tarjeta:</label>
                             <input type="text" name="noTarjeta" class="input" value='{{tar.noTarjeta}}' required>
                         </div>
@@ -39,26 +44,26 @@
                         <br>
                         <div class="form-group">
                             <label>Fecha Atencion:</label>
-                            <input type="date" name="fechaAtencion" class="input" min="2021-07-27"  required>
+                            <input type="date" name="fechaAtencion" class="input" min="2021-07-27"  readonly>
                         </div>
                         <br>
                         <div class="form-group">
                             <label>Fecha Recepcion:</label>
-                            <input type="date" name="fechaRecepcion" class="input" min="2021-08-10"  required>
+                            <input type="date" name="fechaRecepcion" class="input" min="2021-08-10"  readonly>
                         </div>
                         <br>
                         <div class="form-group">
                             <label>Fecha Cierre:</label>
-                            <input type="date" name="fechaCierre" class="input" min="2021-08-10"  required>
+                            <input type="date" name="fechaCierre" class="input" min="2021-08-10"  readonly>
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="cantidad">Cantidad:</label>
-                            <input type="number" name="cantidad" class="input" value='{{pro.cantidad}}' required>
+                            <input type="number" name="cantidad" class="input" value='{{car.cantidad}}' required>
                         </div>
                         <div class="form-group">
                             <label for="total">Total:</label>
-                            <input type="text" name="Total" class="input" value='{{pro.producto.precioVenta * pro.cantidad}}' readonly>
+                            <input type="text" name="Total" class="input" value='{{pro.producto.precioVenta * car.cantidad}}' readonly>
                         </div>
                         <br>
                         <button type="submit" class="btn btn-primary">Registrar</button>
