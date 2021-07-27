@@ -1,7 +1,7 @@
 from flask import Flask,render_template,request,redirect,url_for,flash, session, abort
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
-from modelo.dao import Usuario, db,Categoria,Producto, Tarjetas, Pedidos, Carrito
+from modelo.dao import Usuario, db,Categoria,Producto, Tarjetas, Pedidos, Carrito, Paqueteria, DetallesPedido
 from flask_login import login_required,login_user,logout_user,current_user,login_manager, LoginManager
 from datetime import timedelta
 import json
