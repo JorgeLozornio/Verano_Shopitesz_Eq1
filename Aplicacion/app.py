@@ -171,16 +171,17 @@ def eliminarUsuario(id):
 #REDIRECCIONA A LA PAGINA DE CONSULTA GENERAL DE PRODUCTOS
 @app.route('/productos')
 def productos():
-    return render_template('productos/productos_general.html')
+    prod=Producto()
+    return render_template('productos/productos_general.html', productos = prod.consultaGeneral())
 
 @app.route('/Productos/consultarFoto/<int:id>')
 def consultarFotoProductos(id):
-    pro=productos()
-    return pro.consultarfoto(id)
+    pro=Producto()
+    return pro.consultarFoto(id)
 
 @app.route('/Productos/consultarEspecificaciones/<int:id>')
 def consultarEspecificacionesProductos(id):
-    pro=productos()
+    pro=Producto()
     return pro.consultarEspecificaciones(id)
 
 #REDIRECCIONA A LA PAGINA DE AGREGAR PRODUOCTOS
@@ -549,11 +550,6 @@ def consultarPedido(id):
     return render_template('Pedidos/EditarPedido.html',ped = ped.consultaIndividuall(id))
 
 
-if __name__=='__main__':
-    db.init_app(app)
-    app.run(debug=True)
-
-
 #_______________RUTAS RELACIONADAS CON LAS PAQUETERIAS_______________#
 #CONSULTA GENERAL
 @app.route('/Paqueteria')
@@ -659,7 +655,7 @@ def consultaDetallePedidos():
 
 #REDIRECCIONA A LA PAGINA PARA EDITAR DETALLE PEDIDOS
 @app.route('/Pedidos/EditarDetallePedido',methods=['POST'])
-def editarPedido():
+def editarPedidoDetalle():
     try:
         det=DetallePedidos()
         det.idDetalle=request.form['idDetalle']
@@ -705,7 +701,7 @@ def eliminarDetallePedido(id):
 
 #CONSULTAR DETALLE PEDIDO ESPECIFICO
 @app.route('/Pedidos/Detalle/<int:id>')
-def consultarPedido(id):
+def consultarDetallePedido(id):
     det=DetallePedidos()
     return render_template('Pedidos/EditarDetallesPedidos.html',det = det.consultaIndividuall(id))
 

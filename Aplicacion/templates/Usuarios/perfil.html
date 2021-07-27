@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block titulo%}
-    Perfil
+Perfil
 {% endblock %}
 
 {% block content %}
@@ -9,70 +9,77 @@
 <div class="container" style="width: 1800;">
     <div class=" d-flex justify-content-center align-items-center" style="height: 800px; width: 1500px;;">
         <div class="row">
-        <div class="col">
-            <div class="card text-white bg-success mb-3 text-center" style="max-width: rem; width: 200PX;">
-                <div class="card-header"> 
-                    Opciones</div>
-                <div class="card-body bg-light text-dark">
-                
-                    <ul class="list-group list-group-flush">
-                        <div class="d-grid">
-                            <a href="{{url_for('usuarioCompras')}}" class="btn btn-succes btn-lg" role="button">Mis Compras</a>
-                        </div><br>
-                        <div class="d-grid">
-                            <a href="{{url_for('usuarioPedido')}}" class="btn btn-succes btn-lg" role="button">Mi Pedido</a>
-                        </div><br>
-                        <div class="d-grid">
-                            <a href="{{url_for('usuarioSegPedido')}}" class="btn btn-succes btn-lg" role="button">Seguir Pedido</a>
-                        </div><br>
-                        <div class="d-grid">
-                            <a href="{{url_for('cesta')}}" class="btn btn-succes btn-lg" role="button">Cesta</a>
-                        </div><br>
-                        <div class="d-grid">
-                            <a href="{{url_for('consultaTarjetas')}}" class="btn btn-succes btn-lg" role="button">Mis Tarjetas</a>
-                        </div><br>
-                      </ul>
+            <div class="col">
+                <div class="card text-white bg-success mb-3 text-center" style="max-width: rem; width: 200PX;">
+                    <div class="card-header">
+                        Opciones</div>
+                    <div class="card-body bg-light text-dark">
 
+                        <ul class="list-group list-group-flush">
+                            <div class="d-grid">
+                                <a href="{{url_for('usuarioCompras')}}" class="btn btn-succes btn-lg" role="button">Mis
+                                    Compras</a>
+                            </div><br>
+                            <div class="d-grid">
+                                <a href="{{url_for('usuarioPedido')}}" class="btn btn-succes btn-lg" role="button">Mi
+                                    Pedido</a>
+                            </div><br>
+                            <div class="d-grid">
+                                <a href="{{url_for('usuarioSegPedido')}}" class="btn btn-succes btn-lg"
+                                    role="button">Seguir Pedido</a>
+                            </div><br>
+                            <div class="d-grid">
+                                <a href="{{url_for('cesta')}}" class="btn btn-succes btn-lg" role="button">Cesta</a>
+                            </div><br>
+                            <div class="d-grid">
+                                <a href="{{url_for('consultaTarjetas')}}" class="btn btn-succes btn-lg"
+                                    role="button">Mis Tarjetas</a>
+                            </div><br>
+                        </ul>
+
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card text-white bg-success mb-3 text-center" style="max-width: rem; width: 1000PX;">
-                <div class="card-header"> 
-                    Mis Datos</div>
-                <div class="card-body bg-light text-dark">
+            <div class="col">
+                <div class="card text-white bg-success mb-3 text-center" style="max-width: rem; width: 1000PX;">
+                    <div class="card-header">
+                        Mis Datos</div>
+                    <div class="card-body bg-light text-dark">
 
-                    <img src="../../static/img/perfil.webp" class="img-fluid" style="width: 100px; height: 100px;">
-                
-                    <form action="#">
+                        <img src="../../static/img/perfil.webp" class="img-fluid" style="width: 100px; height: 100px;">
 
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="validationCustom03" value="{{current_user.nombreCompleto}}" required>
-                            <label for="validationCustom03">Nombre Completo</label>
-                        </div>                              
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="validationCustom03" value="{{current_user.direccion}}" required>
-                            <label for="validationCustom03">Dirección</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="tel" class="form-control" id="validationCustom03" value="{{current_user.telefono}}" required>
-                            <label for="validationCustom03">Telefono</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="validationCustom01" value="{{current_user.email}}" required>
-                            <label for="validationCustom01">Correo</label>
-                          </div><br>
-                                                      
-                          <br>
-                          <div class="d-grid">
-                            <button class="btn btn-success" type="submit">Guardar</button>
-                          </div><br>
-                          
-                    </form>
+                      
 
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="validationCustom03"
+                                    value="{{current_user.nombreCompleto}}" required>
+                                <label for="validationCustom03">Nombre Completo</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="validationCustom03"
+                                    value="{{current_user.direccion}}" required>
+                                <label for="validationCustom03">Dirección</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="tel" class="form-control" id="validationCustom03"
+                                    value="{{current_user.telefono}}" required>
+                                <label for="validationCustom03">Telefono</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="validationCustom01"
+                                    value="{{current_user.email}}" required>
+                                <label for="validationCustom01">Correo</label>
+                            </div><br>
+
+                            <br>
+                            
+                            <a href="/usuarios/{{current_user.idUsuario}}"> Editar datos</a>
+
+                       
+
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
 </div>

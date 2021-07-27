@@ -22,40 +22,26 @@
                         <div class="card-body bg-light text-dark">
                         <h5 class="card-title">Registro</h5>
                         
-                            <form action="#">
+                            <form action="/usuarios/agregar/cliente" method="post" enctype="multipart/form-data">
 
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="validationCustom03" placeholder="name@example.com" required>
-                                    <label for="validationCustom03">Nombre</label>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="validationCustom03" placeholder="name@example.com" required>
-                                            <label for="validationCustom03">Apellido Paterno</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="validationCustom03" placeholder="name@example.com" required>
-                                            <label for="validationCustom03">Apellido Materno</label>
-                                        </div>
-                                    </div>
-                                </div>                                
+                                    <input name="nombreCompleto" type="text" class="form-control" id="validationCustom03" placeholder="name@example.com" required>
+                                    <label for="validationCustom03">Nombre - Apellido Paterno - Apellido Materno</label>
+                                </div>                             
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="validationCustom03" placeholder="name@example.com" required>
+                                    <input  name="direccion" type="text" class="form-control" id="validationCustom03" placeholder="name@example.com" required>
                                     <label for="validationCustom03">Dirección</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="tel" class="form-control" id="validationCustom03" required>
+                                    <input name="telefono" type="tel" class="form-control" id="validationCustom03" required>
                                     <label for="validationCustom03">Telefono</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="validationCustom01" placeholder="name@example.com" required>
+                                    <input name="correo" type="email" class="form-control" id="validationCustom01" placeholder="name@example.com" required>
                                     <label for="validationCustom01">Correo</label>
                                   </div>
                                   <div class="form-floating">
-                                    <input type="password" class="form-control" id="validationCustom02" placeholder="Password" required>
+                                    <input name="password" type="password" class="form-control" id="validationCustom02" placeholder="Password" required>
                                     <label for="validationCustom02">Contraseña</label>
                                   </div><br>
                                   <div class="form-check">

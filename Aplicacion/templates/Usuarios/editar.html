@@ -18,7 +18,6 @@ Editar Caategorias
                 </div>
                 <div class="card-body bg-light text-dark">
                     <form action="/usuarios/editar" method="post" enctype="multipart/form-data">
-
                         <div class="form-group">
                             <label for="id">ID:</label>
                             <input type="number" name="id" value="{{us.idUsuario}}" readonly class="form-control">
@@ -47,6 +46,7 @@ Editar Caategorias
                                 required>
                             <label for="validationCustom02">Contraseña</label>
                         </div><br>
+                        {%if us.tipo=='Admin'%}
                         <div class="form-group form-floating">
                             <select class="form-select form-control" id="tipo" name="tipo" aria-label="Floating label select example">
                                 {% if us.tipo == 'Cliente' %}
@@ -82,14 +82,17 @@ Editar Caategorias
                             </select>
                             <label for="floatingSelect">Estatus</label>
                         </div>
-
+                        {%endif%}
                         <br>
                         <button type="submit" class="btn btn-success">Guardar</button>
                         <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrar">
                             Eliminar
                         </a>
+                        {%if us.tipo=='Admin'%}
                         <a href="/usuarios" class="btn btn-primary">Cancelar</a>
-
+                        {%else%}
+                        <a href="/usuarios/perfil" class="btn btn-primary">Cancelar</a>
+                        {%endif%}
                     </form>
                 </div>
             </div>
