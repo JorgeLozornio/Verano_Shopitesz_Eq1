@@ -304,3 +304,42 @@ class PAQUETERIA(db.Model):
         cat.estatus='Inactiva'
         cat.editar()
 
+#TABLA DE DETALLES PEDIDOS
+class DetallePedidos(db.Model):
+    tablename='DetallePedidos'
+    idDetalle = Column( Integer, primary_key = True )
+    idPedido = Column( Integer, ForeignKey('Pedidos.idPedido') )
+    idProducto = Column( Integer, ForeignKey('Producto.idProducto') )
+    precio = Column( Float, nullable = False )
+    cantidadPedida = Column( Integer, nullable = False )
+    cantidadEnviada = Column( Integer, nullable = False )
+    cantidadAceptada = Column( Integer, nullable = False )
+    cantidadRechazada = Column( Integer, nullable = False )
+    subtotal = Column( Float, nullable = False )
+    estatus = Column( String, nullable = False )
+    comentario = Column( String, nullable = False )
+
+    def consultaGeneral(self):
+        return self.query.all()
+        #return self.query.filter(DetallePedidos.estatus=='Activa').all()
+
+    def consultaIndividuall(self,id):
+        return DetallePedidos.query.get(id)
+
+    def agregar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def editar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self,id):
+        det=self.consultaIndividuall(id)
+        db.session.delete(det)
+        db.session.commit()
+
+    def eliminacionLogica(self,id):
+        det = self.consultaIndividuall(id)
+        det.estatus='Inactiva'
+        det.editar()
