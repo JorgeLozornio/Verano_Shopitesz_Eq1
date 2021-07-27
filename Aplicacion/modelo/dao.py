@@ -267,3 +267,41 @@ class Carrito(db.Model):
         
     def consultaGeneral(self,idUsuario):
         return self.query.filter(Carrito.idUsuario == idUsuario).all()
+
+#TABLA DE PAQUETERIAS
+class PAQUETERIA(db.Model):
+    __tablename__='Paqueteria' 
+    idPaqueteria = Column( Integer, primary_key = True )
+    nombre = Column( String, unique = True )
+    paginaweb = Column( String, unique = True )
+    precio = Column( String, unique = True )
+    telefono = Column( String, unique = True )
+    estatus = Column( String, nullable = True)
+
+    def consultaGeneral(self):
+        return self.query.all()
+        
+    def consultaIndividuall(self,id):
+        return Paqueteria.query.get(id)
+
+    def consultarImagen(self,id):
+        return self.consultaIndividuall(id).imagen
+
+    def agregar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def editar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self,id):
+        cat=self.consultaIndividuall(id)
+        db.session.delete(cat)
+        db.session.commit()
+
+    def eliminacionLogica(self,id):
+        cat = self.consultaIndividuall(id)
+        cat.estatus='Inactiva'
+        cat.editar()
+
