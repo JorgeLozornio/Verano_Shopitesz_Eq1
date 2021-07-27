@@ -616,3 +616,101 @@ def eliminarPaqueteria(id):
         flash('Error al eliminar la paqueteria')
     return redirect(url_for('consultaPaqueteria'))
 
+#__RUTAS RELACIONADAS CON LOS DETALLE PEDIDOS__#
+
+#REDIRECCIONA A LA PAGINA PARA AGREGAR DETALLE PEDIDOS
+@app.route('/Pedidos/Pedidos',methods=['post'])
+def agregarDetallePedido():
+    try:
+        det=DetallePedidos()
+        det.idDetalle=request.form['idDetalle']
+        det.idPedido=request.form['idPedido']
+        det.idProducto=request.form['idProducto']
+        det.precio=request.form['precio']
+        det.cantidadPedida=request.form['cantidadPedida']
+        det.cantidadEnviada=request.form['cantidadEnviada']
+        det.cantidadAceptada=request.form['cantidadAceptada']
+        det.cantidadRechazada=request.form['cantidadRechazada']
+        det.subtotal=request.form['subtotal']
+        det.estatus=request.form.get('estatus')
+        det.comentario=request.form['comentario']
+        print(det.idDetalle)
+        print(det.idPedido)
+        print(det.idProducto)
+        print(det.precio)
+        print(det.cantidadPedida)
+        print(det.cantidadEnviada)
+        print(det.cantidadAceptada)
+        print(det.cantidadRechazada)
+        print(det.subtotal)
+        print(det.estatus)
+        print(det.comentario)
+        det.agregar()
+        flash('¡ Detalle de Pedido agregado con exito !')
+    except:
+        flash('¡ Error al agregar el Detalle de Pedido !')
+    return redirect(url_for('consultaDetallePedidos'))
+
+#REDIRECCIONA A LA PAGINA PARA CONSULTAR DETALLE PEDIDOS
+@app.route('/Pedidos/Detalles')
+def consultaDetallePedidos():
+    det=DetallePedidos()
+    return render_template('Pedidos/DetallePedidos.html',DetallesPedidos=det.consultaGeneral())
+
+#REDIRECCIONA A LA PAGINA PARA EDITAR DETALLE PEDIDOS
+@app.route('/Pedidos/EditarDetallePedido',methods=['POST'])
+def editarPedido():
+    try:
+        det=DetallePedidos()
+        det.idDetalle=request.form['idDetalle']
+        det.idPedido=request.form['idPedido']
+        det.idProducto=request.form['idProducto']
+        det.precio=request.form['precio']
+        det.cantidadPedida=request.form['cantidadPedida']
+        det.cantidadEnviada=request.form['cantidadEnviada']
+        det.cantidadAceptada=request.form['cantidadAceptada']
+        det.cantidadRechazada=request.form['cantidadRechazada']
+        det.subtotal=request.form['subtotal']
+        det.estatus=request.form.get('estatus')
+        det.comentario=request.form['comentario']
+        print(det.idDetalle)
+        print(det.idPedido)
+        print(det.idProducto)
+        print(det.precio)
+        print(det.cantidadPedida)
+        print(det.cantidadEnviada)
+        print(det.cantidadAceptada)
+        print(det.cantidadRechazada)
+        print(det.subtotal)
+        print(det.estatus)
+        print(det.comentario)
+        det.editar()
+        flash('¡ Detalle de Pedido editado con exito !')
+    except:
+        flash('¡ Error al editar los Detalles del Pedido !')
+
+    return redirect(url_for('consultaDetallePedidos'))
+
+#ELIMINAR DETALLE PEDIDOS
+@app.route('/Pedidos/eliminarDetalles/<int:id>')
+def eliminarDetallePedido(id):
+    try:
+        dep=DetallePedidos()
+        #detallePedido.eliminar(id)
+        dep.eliminacionLogica(id)
+        flash('Detalle de Pedido eliminado con exito')
+    except:
+        flash('Error al eliminar el Detalle de Pedido')
+    return redirect(url_for('consultaDetallePedidos'))
+
+#CONSULTAR DETALLE PEDIDO ESPECIFICO
+@app.route('/Pedidos/Detalle/<int:id>')
+def consultarPedido(id):
+    det=DetallePedidos()
+    return render_template('Pedidos/EditarDetallesPedidos.html',det = det.consultaIndividuall(id))
+
+
+if __name__=='__main__':
+    db.init_app(app)
+    app.run(debug=True)
+
