@@ -1,104 +1,59 @@
 {% extends "layout.html" %}
 
 {% block titulo%}
-    Productos General
+Consulta Productos
 {% endblock %}
 
 {% block content %}
 {{super()}}
-    
-    <table class="table table-success table-bordered border-light">
-        <thead>
-            <tr>
-                <th scope="col">Imagen</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Estatus</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row" style="text-align: center;"><img src="images/playeraTEC.jpg" width="70" height="70">
-                </th>
-                <td><b>Playera TECNM</b>
-                    <br>
-                    De: fcontreras849@accitesz
-                    <br>
-                    Visitas: 45
-                    <br>
-                    ID:5896321458
-                </td>
-                <td>$ 500.00 MXN</td>
-                <td>Plan del anuncio: <b>Gratis</b></td>
-                <td><button style="background: darkgreen; color: floralwhite;">Modificar</button>
-                    <br>
-                    <button style="background: red; color: floralwhite; text-align: end;">Eliminar</button>
-                    <br>
-                    <a class="btn btn-outline-success" type="button" style="background: whitesmoke; color: black; text-align: end;" href="detallesRopa.html"> Detalles </a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row" style="text-align: center;"><img src="images/teclado.jpg" width="100" height="70">
-                </th>
-                <td><b>Teclado Mecanico</b>
-                    <br>
-                    De: tgonzalez895@accitesz
-                    <br>
-                    Visitas: 90
-                    <br>
-                    ID:3685932147
-                </td>
-                <td>$ 700.00 MXN</td>
-                <td>Plan del anuncio: <b>Gratis</b></td>
-                <td><button style="background: darkgreen; color: floralwhite;">Modificar</button>
-                    <br>
-                    <button style="background: red; color: floralwhite; text-align: end;">Eliminar</button>
-                    <br>
-                    <button style="background: whitesmoke; color: black; text-align: end;">Detalles</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row" style="text-align: center;"><img src="images/Libreta.png" width="100" height="100">
-                </th>
-                <td><b>Cuaderno Inteligente</b>
-                    <br>
-                    De: ajuarez536@accitesz
-                    <br>
-                    Visitas: 40
-                    <br>
-                    ID:3598624781
-                </td>
-                <td>$ 830.00 MXN</td>
-                <td>Plan del anuncio: <b>Gratis</b></td>
-                <td><button style="background: darkgreen; color: floralwhite;">Modificar</button>
-                    <br>
-                    <button style="background: red; color: floralwhite; text-align: end;">Eliminar</button>
-                    <br>
-                    <button style="background: whitesmoke; color: black; text-align: end;">Detalles</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row" style="text-align: center;"><img src="images/Arduino.jpg" width="100" height="100">
-                </th>
-                <td><b>Arduino</b>
-                    <br>
-                    De: uloredo465@accitesz
-                    <br>
-                    Visitas: 180
-                    <br>
-                    ID:1258648594
-                </td>
-                <td>$ 599.00 MXN</td>
-                <td>Plan del anuncio: <b>Gratis</b></td>
-                <td><button style="background: darkgreen; color: floralwhite;">Modificar</button>
-                    <br>
-                    <button style="background: red; color: floralwhite; text-align: end;">Eliminar</button>
-                    <br>
-                    <button style="background: whitesmoke; color: black; text-align: end;">Detalles</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 
-    {% endblock %}
+<div>
+    <div class=" d-flex justify-content-center py-4" style="height: 800px">
+        <div >
+            <div class="card text-white bg-success mb-3 text-center shadow-lg" style="max-width: rem; width: 1800PX;">
+                <div class="card-header"> 
+                    <img src="../../static/img/tec.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                    Listado de Productos</div>
+                <div class="card-body bg-light text-dark">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end py-4 px-4">
+                        <a href="{{url_for('nuevoProducto')}}" class="btn btn-success btn-lg" role="button">Agregar</a>
+                    </div>
+                    <table class="table table-light">
+                        <th>IDPRODUCTO</th>
+                        <th>IDCATEGORIA</th>
+                        <th>NOMBRE</th>
+                        <th>DESCRIPCION</th>
+                        <th>PRECIOVENTA</th>
+                        <th>EXISTENCIA</th>
+                        <th>FOTO</th>
+                        <th>ESPECIFICACIONES</th>
+                        <th>ESTATUS</th>
+                        <th>VER</th>
+                        {% for pro in productos %}
+                            <tr>
+                                <td>{{pro.idProducto}}</td>
+                                <td>{{pro.idCategoria}}</td>
+                                <td>{{pro.nombre}}</td>
+                                <td>{{pro.descripcion}}</td>
+                                <td>{{pro.precioVenta}}</td>
+                                <td>{{pro.existencia}}</td>
+                                <td><img src="/Productos/consultarFoto/{{pro.idProducto}}" width="100px" height="80px"></td>
+                                <td><img src="/Productos/consultarEspecificaciones/{{pro.idProducto}}" width="100px" height="80px"></td>
+                                <td>{{pro.estatus}}</td>
+                                <td>
+                                    <a href="/Productos/{{pro.idProducto}}" class="btn btn-warning btn-lg"  role="button">Editar
+                                    <span class="glyphicon glyphicon-eye-open"></span>                                   
+                                    </a>   
+                                    <button class="btn btn-default" id="agregar" onclick="agregarCarrito()">Agregar</button>                                  
+                                    </a>                                 
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{url_for('static',filename='js/productos.js')}}"></script>
+{% endblock %}
