@@ -531,3 +531,67 @@ def consultarPedido(id):
 if __name__=='__main__':
     db.init_app(app)
     app.run(debug=True)
+
+
+#_______________RUTAS RELACIONADAS CON LAS PAQUETERIAS_______________#
+#CONSULTA GENERAL
+@app.route('/Paqueteria')
+def consultaPaqueteria():
+    paq=Paqueteria()
+    return render_template('paqueteria/ConsultaGeneral.html',paqueteria=paq.consultaGeneral())
+
+#REDIRECCIONA A LA PAGINA DE AGREGAR CATEGORIAS
+@app.route('/Paqueteria/nueva')
+def nuevaPaqueteria():
+    return render_template('paqueteria/agregar.html')
+
+#AGREGAR Paqueterias
+@app.route('/Paqueteria/agregar',methods=['post'])
+def agregarPaqueteria():
+    try:
+        paq=Paqueteria()
+        paq.nombre=request.form['nombre']
+        paq.paginaweb=request.form['paginaweb']
+        paq.precio=request.form['precio']
+        paq.telefono=request.form['telefono']
+        paq.estatus='A'
+        paq.agregar()
+        flash('¡ Paqueteria agregada con exito !')
+    except:
+        flash('¡ Error al agregar la paqueteria !')
+    return redirect(url_for('consultaPaqueteria'))
+
+#CONSULTAR PAQUETERIA ESPECIFICA
+@app.route('/Paqueteria/<int:id>')
+def consultarPaqueteria(id):
+    paq=Paqueteria()
+    return render_template('paqueteria/editar.html',paq=paq.consultaIndividuall(id))
+
+#EDITAR PAQUETERIA
+@app.route('/Paqueteria/editar',methods=['POST'])
+def editarPaqueteria():
+    try:
+        paq=Paqueteria()
+        paq.nombre=request.form['nombre']
+        paq.paginaweb=request.form['paginaweb']
+        paq.precio=request.form['precio']
+        paq.telefono=request.form['telefono']
+        paq.estatus=request.values.get("estatus","Inactiva")
+        paq.editar()
+        flash('¡ Paqueteria editada con exito !')
+    except:
+        flash('¡ Error al editar la paqueteria !')
+
+    return redirect(url_for('consultaPaqueteria'))
+
+#ELIMINAR PAQUETERIA
+@app.route('/Paqueteria/eliminar/<int:id>')
+def eliminarPaqueteria(id):
+    try:
+        Paqueteria=Paqueteria()
+        paqueteria.eliminacionLogica(id)
+        flash('paqueteria eliminada con exito')
+    except:
+        flash('Error al eliminar la paqueteria')
+    return redirect(url_for('consultaPaqueteria'))
+
