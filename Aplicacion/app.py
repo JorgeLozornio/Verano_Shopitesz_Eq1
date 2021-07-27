@@ -230,9 +230,11 @@ def editarTProducto():
         pro.precioVenta = request.form['precioventa']
         pro.existencia = request.form['existencia']
         imagen=request.files['imagen'].stream.read()
+        Especificacion=request.files['Especificacion'].stream.read()
         if imagen:
             pro.foto=imagen
-        pro.especificaciones = request.form['especificaciones']
+        if Especificacion:
+            pro.especificaciones = request.form['especificaciones']
         
         pro.estatus = 'A'
         pro.editar()
@@ -252,7 +254,11 @@ def eliminarProducto(id):
     except:
         flash('Error al eliminar el Producto')
     return redirect(url_for('consultaProductos'))
-
+#CONSULTA IMAGEN
+@app.route('/Productos/consultarImagen/<int:id>')
+def consultarImagenProductos(id):
+    pro=Productos()
+    return pro.consultarImagen(id)
 #CONSULTAR Producto ESPECIFICA
 @app.route('/Productos/<int:id>')
 def consultarProductos(id):
