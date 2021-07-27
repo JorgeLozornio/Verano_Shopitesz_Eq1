@@ -281,7 +281,7 @@ class PAQUETERIA(db.Model):
         return self.query.all()
         
     def consultaIndividuall(self,id):
-        return Paqueteria.query.get(id)
+        return PAQUETERIA.query.get(id)
 
     def consultarImagen(self,id):
         return self.consultaIndividuall(id).imagen
