@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block titulo%}
+Detalles de Pedido
+{% endblock %}
+
+{% block content %}
+{{super()}}
+<div>
+    
+    <div class=" d-flex justify-content-center py-4" style="height: 800px">
+        <div >
+            <div class="card text-white bg-success mb-3 text-center shadow-lg" style="max-width: rem; width: 1800PX;">
+                <div class="card-header"> 
+                    <img src="../../static/img/tec.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                        Mis Pedidos</div>
+                <div class="card-body bg-light text-dark">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end py-4 px-4">
+                    </div>
+                    <table class="table table-light">
+                        <th>Id Detalle</th>
+                        <th>Id Pedido</th>
+                        <th>Id Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad Pedida</th>
+                        <th>Cantidad Enviada</th>
+                        <th>Cantidad Aceptada</th>
+                        <th>Cantidad Rechazada</th>
+                        <th>Subtotal</th>
+                        <th>Estatus</th>
+                        <th>Comentarios</th>
+                        <th>Ver</th>
+                        {% for det in DetallePedidos %}
+                            <tr>
+                                <td>{{det.idDetalle}}</td>
+                                <td>{{det.idPedido}}</td>
+                                <td>{{det.idProducto}}</td>
+                                <td>{{det.precio}}</td>
+                                <td>{{det.cantidadPedida}}</td>
+                                <td>{{det.cantidadEnviada}}</td>
+                                <td>{{det.cantidadAceptada}}</td>
+                                <td>{{det.cantidadRechazada}}</td>
+                                <td>{{det.subtotal}}</td>
+                                <td>{{det.estatus}}</td>
+                                <td>{{det.comentario}}</td>
+                                
+                                <td>
+                                    <a href="/Pedidos/Detalle/{{ped.idPedido}}" class="btn btn-warning btn-lg"  role="button">Editar
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    {% endblock %}
+

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block titulo%}
-Editar Pedido
+Pedidos
 {% endblock %}
 
 {% block content %}
@@ -36,6 +36,9 @@ Editar Pedido
                                 <td>{{ped.estatus}}</td>
                                 <td>
                                     <a href="/Pedidos/{{ped.idPedido}}" class="btn btn-warning btn-lg"  role="button">Editar
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                    </a>
+                                    <a href="/Pedidos/Detalles/{{ped.idPedido}}" class="btn btn-warning btn-lg"  role="button">Detalles
                                         <span class="glyphicon glyphicon-eye-open"></span>
                                     </a>
                                 </td>

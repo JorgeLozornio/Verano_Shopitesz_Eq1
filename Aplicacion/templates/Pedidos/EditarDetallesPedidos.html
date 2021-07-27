@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+
+{% block titulo%}
+Editar Detalles de Pedidos
+{% endblock %}
+
+{% block content %}
+{{super()}}
+
+<div>
+    <div class=" d-flex justify-content-center py-4" style="height: 800px">
+        <div>
+            <div class="card text-white bg-success mb-3 text-center shadow-lg" style="max-width: rem; width: 500PX;">
+                <div class="card-header">
+                    <img src="../../static/img/tec.jpg" alt="" width="30" height="24"
+                        class="d-inline-block align-text-top">
+                    Edición de Detalles Pedidos
+                </div>
+                <div class="card-body bg-light text-dark">
+                    <form action="/Pedidos/EditarDetallePedido" method="post" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label for="idPedido">ID:</label>
+                            <input type="number" name="idPedido" value="{{ped.idPedido}}" readonly class="form-control">
+                        </div><br>
+                        <div class="form-group">
+                            <label for="idComprador">ID Comprador:</label>
+                            <input type="number" name="idComprador" value="{{ped.idComprador}}" readonly class="form-control">
+                        </div><br>
+                        <div class="form-group">
+                            <label for="idVendedor">ID Vendedor:</label>
+                            <input type="number" name="idVendedor" value="{{ped.idVendedor}}" readonly class="form-control">
+                        </div><br>
+                        <div class="form-group">
+                            <label for="idTarjeta">ID Tarjeta:</label>
+                            <input type="number" name="idTarjeta" value="{{ped.idTarjeta}}" readonly class="form-control">
+                        </div><br>
+                        <div class="form-group form-floating mb-3">
+                            <input type="date" class="form-control" name="fechaRegistro" value="{{ped.fechaRegistro}}"required>
+                            <label for="validationCustom03">Fecha Registro</label>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input type="date" class="form-control" name="fechaAtencion" value="{{ped.fechaAtencion}}"required>
+                            <label for="validationCustom03">Fecha Atencion</label>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input type="date" class="form-control" name="fechaRecepcion" value="{{ped.fechaRecepcion}}"required>
+                            <label for="validationCustom03">Fecha Recepción</label>
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input type="date" class="form-control" name="fechaCierre" value="{{ped.fechaCierre}}"required>
+                            <label for="validationCustom03">Fecha Cierre</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="total">Total:</label>
+                            <input type="number" name="total" value="{{ped.total}}" readonly class="form-control">
+                        </div><br>
+                        <div class="form-group form-floating">
+                            <select class="form-select form-control" name="estatus" id="estatus" aria-label="Floating label select example">
+                                {% if ped.estatus == 'Pendiente' %}
+                                    <option value="Pendiente" selected>Pendiente</option>
+                                {% else %}
+                                    <option value="Pendiente">Pendiente</option>
+                                {% endif %}
+                                {% if ped.estatus == 'En camino' %}
+                                    <option value="En camino" selected>En camino</option>
+                                {% else %}
+                                    <option value="En camino">En camino</option>
+                                {% endif %}
+                                {% if ped.estatus == 'Entregado' %}
+                                    <option value="Entregado" selected>Entregado</option>
+                                {% else %}
+                                    <option value="Entregado">Entregado</option>
+                                {% endif %}
+                                {% if ped.estatus == 'En devolucion' %}
+                                    <option value="En devolucion" selected>En devolucion</option>
+                                {% else %}
+                                    <option value="En devolucion">En devolucion</option>
+                                {% endif %}
+                            </select>
+                            <label for="floatingSelect">Estatus</label>
+                        </div>
+
+                        <br>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrar">
+                            Eliminar
+                        </a>
+                        <a href="/Pedidos/Detalles" class="btn btn-primary">Cancelar</a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal para ver el cuadro de dialogo de eliminar-->
+<div id="borrar" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h4 class="modal-title">Eliminación de Pedido</h4>
+            </div>
+            <div class="modal-body">
+                <p>¿ Estas seguro de eliminar el pedido: <b>{{ped.idPedido}} ?</b> </p>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary" href="/Pedidos/eliminar/{{ped.idPedido}}">Aceptar</a>
+                <button type="button" class="btn btn-info bg-danger text-white" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
