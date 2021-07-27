@@ -6,60 +6,69 @@
 
 {% block content %}
 {{super()}}
-    <center><h1>Revisa tu pedido</h1></center>
-<table class="table table-success table-bordered border-light">
-        <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Detalles</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row" style="text-align: center;"><img src="../../images/teclado.jpg" width="135" height="70">
-                </th>
-                <td><b>Teclado Mecanico</b>
-                    <br>
-                    Cantidad: 2
-                    <br>
-                    $700.00
-                    </td>
-                </td>
-                <td>De: tgonzalez895@accitesz</br><br>Entrega estimada el Miercoles </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                    <b>Total: </b>$1400.00
-                </td>
-
-            </tr>
-    </tbody>
-    </table>
-<script src="../../static/js/bootstrap.min.js"></script>
-</body>
-<footer>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <b>Metodo de pago:</b>
-
-    <p align="right">
-        <button style="background: darkgreen; color: floralwhite;" float-right> Comprar </button>
-        &nbsp;
-    </p>
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;
-    Seleccionar tarjeta:
-            <select required class=imput name = "Tarjeta"
-			<option value="Elije Tarjeta">Elije Tarjeta</option>
-			<option value="Jose Luis BBVA" selected>Jose Luis BBVA - 4152 4152 4152 4152</option>
-			<option value="Bancoppel - 4152 4152 4152 4152">Bancoppel - 4152 4152 4152 4152</option>
-			</select>
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a class="btn btn-outline-success" type="button" style="background: darkgreen; color: floralwhite;" href="../Tarjetas/AltaTarjeta.html"> <u>Agregar tarjeta</u> </a>
-</footer>
+<div>
+    <div class=" d-flex justify-content-center py-4" style="height: 800px">
+        <div>
+            <div class="card text-white bg-success mb-3 text-center shadow-lg" style="max-width: rem; width: 500PX;">
+                <div class="card-header">
+                    <img src="../../static/img/tec.jpg" alt="" width="30" height="24"
+                        class="d-inline-block align-text-top">
+                    Revisa tu Compra
+                </div>
+                <div class="card-body bg-light text-dark">
+                    <form action="/Pedidos/Compra" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="idComprador">ID Comprador:</label>
+                            <input type="text" name="idComprador" class="input" value='{{us.idUsuario}}' readonly>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="idVendedor">ID Vendedor:</label>
+                            <input type="text" name="idVendedor" class="input" value='{{us.idUsuario}}' readonly>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="noTarjeta">Num Tarjeta:</label>
+                            <input type="text" name="noTarjeta" class="input" value='{{tar.noTarjeta}}' required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Fecha Registro:</label>
+                            <input type="date" name="fechaRegistro" class="input" min="2021-07-27"  required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Fecha Atencion:</label>
+                            <input type="date" name="fechaAtencion" class="input" min="2021-07-27"  required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Fecha Recepcion:</label>
+                            <input type="date" name="fechaRecepcion" class="input" min="2021-08-10"  required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Fecha Cierre:</label>
+                            <input type="date" name="fechaCierre" class="input" min="2021-08-10"  required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="cantidad">Cantidad:</label>
+                            <input type="number" name="cantidad" class="input" value='{{pro.cantidad}}' required>
+                        </div>
+                        <div class="form-group">
+                            <label for="total">Total:</label>
+                            <input type="text" name="Total" class="input" value='{{pro.producto.precioVenta * pro.cantidad}}' readonly>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                        <a href="/Cesta" class="btn btn-danger">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 {% endblock %}

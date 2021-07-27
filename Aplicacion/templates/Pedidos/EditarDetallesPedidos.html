@@ -18,39 +18,39 @@ Editar Detalles de Pedidos
                 </div>
                 <div class="card-body bg-light text-dark">
                     <form action="/Pedidos/EditarDetallePedido" method="post" enctype="multipart/form-data">
-
+                        <div class="form-group">
+                            <label for="idDetalle">ID Detalle:</label>
+                            <input type="number" name="idDetalle" value="{{det.idDetalle}}" readonly class="form-control">
+                        </div><br>
                         <div class="form-group">
                             <label for="idPedido">ID:</label>
-                            <input type="number" name="idPedido" value="{{ped.idPedido}}" readonly class="form-control">
+                            <input type="number" name="idPedido" value="{{det.idPedido}}" readonly class="form-control">
                         </div><br>
                         <div class="form-group">
-                            <label for="idComprador">ID Comprador:</label>
-                            <input type="number" name="idComprador" value="{{ped.idComprador}}" readonly class="form-control">
+                            <label for="idProducto">ID Producto:</label>
+                            <input type="number" name="idProducto" value="{{det.idProducto}}" readonly class="form-control">
                         </div><br>
                         <div class="form-group">
-                            <label for="idVendedor">ID Vendedor:</label>
-                            <input type="number" name="idVendedor" value="{{ped.idVendedor}}" readonly class="form-control">
+                            <label for="Precio">Precio:</label>
+                            <input type="number" name="precio" value="{{det.precio}}" readonly class="form-control">
                         </div><br>
                         <div class="form-group">
-                            <label for="idTarjeta">ID Tarjeta:</label>
-                            <input type="number" name="idTarjeta" value="{{ped.idTarjeta}}" readonly class="form-control">
+                            <label for="Cantidad">Cantidad Pedido:</label>
+                            <input type="number" name="cantidadPedido" value="{{det.cantidadPedida}}" readonly class="form-control">
                         </div><br>
-                        <div class="form-group form-floating mb-3">
-                            <input type="date" class="form-control" name="fechaRegistro" value="{{ped.fechaRegistro}}"required>
-                            <label for="validationCustom03">Fecha Registro</label>
-                        </div>
-                        <div class="form-group form-floating mb-3">
-                            <input type="date" class="form-control" name="fechaAtencion" value="{{ped.fechaAtencion}}"required>
-                            <label for="validationCustom03">Fecha Atencion</label>
-                        </div>
-                        <div class="form-group form-floating mb-3">
-                            <input type="date" class="form-control" name="fechaRecepcion" value="{{ped.fechaRecepcion}}"required>
-                            <label for="validationCustom03">Fecha Recepción</label>
-                        </div>
-                        <div class="form-group form-floating mb-3">
-                            <input type="date" class="form-control" name="fechaCierre" value="{{ped.fechaCierre}}"required>
-                            <label for="validationCustom03">Fecha Cierre</label>
-                        </div>
+                        <div class="form-group">
+                            <label for="CantidadE">Cantidad Enviada:</label>
+                            <input type="number" name="cantidadEnviada" value="{{det.cantidadEnviada}}" readonly class="form-control">
+                        </div><br>
+                        <div class="form-group">
+                            <label for="CantidadA">Cantidad Aceptada:</label>
+                            <input type="number" name="cantidadAceptada" value="{{det.cantidadAceptada}}" readonly class="form-control">
+                        </div><br>
+                        <div class="form-group">
+                            <label for="CantidadR">Cantidad Rechazada:</label>
+                            <input type="number" name="cantidadRechazada" value="{{det.cantidadRechazada}}" readonly class="form-control">
+                        </div><br>
+                        
                         <div class="form-group">
                             <label for="total">Total:</label>
                             <input type="number" name="total" value="{{ped.total}}" readonly class="form-control">
@@ -79,6 +79,11 @@ Editar Detalles de Pedidos
                                 {% endif %}
                             </select>
                             <label for="floatingSelect">Estatus</label>
+                            <br>
+                        <div class="form-group">
+                            <label>Comentarios:</label>
+                            <input type="text" name="comentario" class="input" value='{{ped.comentario}}' required>
+                        </div>
                         </div>
 
                         <br>
