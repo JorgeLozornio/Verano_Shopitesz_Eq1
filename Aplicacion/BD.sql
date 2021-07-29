@@ -23,7 +23,7 @@ create table Productos(
     especificaciones mediumblob not null,
     estatus varchar(10),
     constraint pk_productos primary key(idProducto),
-    constraint fk_productos_categorias foreign key(idCategoria) references Categoria(idCategoria),
+    constraint fk_productos_categorias foreign key(idCategoria) references Categorias(idCategoria),
     constraint chk_estatus check (estatus in('Activa','Inactiva'))
 );
 
