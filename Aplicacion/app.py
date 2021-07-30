@@ -506,7 +506,7 @@ def eliminarCategoria(id):
 
 #REDIRECCIONA A LA PAGINA PARA AGREGAR PEDIDOS
 @app.route('/Pedidos/Compra',methods=['post'])
-def agregarPedido():
+def agregar():
     try:
         ped=Pedidos()
         ped.idPedido=request.form['idPedido']
@@ -595,6 +595,7 @@ def consultarPedido(id):
 @app.route('/Pedidos/Comprar/<int:id>')
 def comprar(id):
     ped=Pedidos()
+    ped.agregar()
     return render_template('Pedidos/Compra.html')
 
 

@@ -225,8 +225,6 @@ class Pedidos(db.Model):
     fechaCierre = Column( String, nullable = False )
     total = Column( Float, nullable = False )
     estatus = Column( String, nullable = False )
-    carrito = relationship('Carrito', backref = 'Pedidos', lazy = 'select')
-    producto = relationship('Productos', backref = 'Pedidos', lazy = 'select')
 
     def consultaGeneral(self):
         return self.query.all()
