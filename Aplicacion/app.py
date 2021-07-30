@@ -122,6 +122,30 @@ def agregarUsuario():
         flash('¡ Error al agregar al usuario !')
     return redirect(url_for('consultaUsuarios'))
 
+@app.route('/usuarios/agregar/cliente',methods=['post'])
+def agregarUsuarioCliente():
+    try:
+        usuario=Usuario()
+        usuario.nombreCompleto=request.form['nombreCompleto']
+        usuario.direccion=request.form['direccion']
+        usuario.telefono=request.form['telefono']        
+        usuario.email=request.form['email']
+        usuario.password=request.form['password']
+        usuario.tipo='Cliente'
+        usuario.estatus='A'
+        print(usuario.nombreCompleto)
+        print(usuario.direccion)
+        print(usuario.telefono)
+        print(usuario.email)
+        print(usuario.tipo)
+        print(usuario.estatus)
+        usuario.agregar()
+        flash('¡ Usuario registrado con exito')
+    except:
+        print('No paso')
+        flash('¡ Error al agregar al usuario !')
+    return redirect(url_for('productosPorCategorias'))
+
 #CONSULTAR USUARIO ESPECIFICO
 @app.route('/usuarios/<int:id>')
 def consultarUsuario(id):

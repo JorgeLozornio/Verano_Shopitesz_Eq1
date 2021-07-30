@@ -142,7 +142,7 @@ class Usuario(UserMixin,db.Model):
         else:
             return False
     def is_comprador(self):
-        if self.tipo=='Comprador':
+        if self.tipo=='Cliente':
             return True
         else:
             return False

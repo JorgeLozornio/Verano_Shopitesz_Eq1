@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block titulo%}
-Editar Caategorias
+Editar Usuarios
 {% endblock %}
 
 {% block content %}
@@ -14,7 +14,7 @@ Editar Caategorias
                 <div class="card-header">
                     <img src="../../static/img/tec.jpg" alt="" width="30" height="24"
                         class="d-inline-block align-text-top">
-                    Edición de categorias
+                    Edición de usuarios
                 </div>
                 <div class="card-body bg-light text-dark">
                     <form action="/usuarios/editar" method="post" enctype="multipart/form-data">
@@ -46,7 +46,7 @@ Editar Caategorias
                                 required>
                             <label for="validationCustom02">Contraseña</label>
                         </div><br>
-                        {%if us.tipo=='Admin'%}
+                        {%if current_user.is_admin()%}
                         <div class="form-group form-floating">
                             <select class="form-select form-control" id="tipo" name="tipo" aria-label="Floating label select example">
                                 {% if us.tipo == 'Cliente' %}
