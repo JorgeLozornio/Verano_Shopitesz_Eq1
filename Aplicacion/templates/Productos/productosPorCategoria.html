@@ -5,7 +5,7 @@ Consulta Productos
 {% block content %}
 {{super()}}
 <label>Selecciona la Categoria:</label>
-<select id="categoria" onchange="obtenerIDCategorias()">
+<select id="idcategoria" onchange="obtenerIDCategorias()">
     <option value="0">Todas las categorias</option>
     {% for cat in categorias %}
         {% if cat.estatus=='A' %}
@@ -89,9 +89,4 @@ Consulta Productos
 
     </div>
 </div>
-{% endblock %}
-
-{% block scripts %}
-{{super()}}
-<script src="{{url_for('static',filename='js/productos.js')}}"></script>
 {% endblock %}

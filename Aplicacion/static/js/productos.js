@@ -1,5 +1,6 @@
 function obtenerIDCategorias(){
-    var combo=document.getElementById("Categoria");
+    console.log('GETID')
+    var combo=document.getElementById("idcategoria");
     var idCategoria=combo.options[combo.options.selectedIndex].value;
     var ajax=new XMLHttpRequest();
     var url='/productos/categoria/'+idCategoria;
@@ -15,6 +16,7 @@ function imprimirMsg(){
     alert('Documento cargado');
 }
 function llenarTabla(datos){
+    console.log('1')
     var tabla=document.getElementById("datos");
     var productos=JSON.parse(datos);
     eliminarTabla();

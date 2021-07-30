@@ -257,13 +257,13 @@ def consultarProductosPorCategoria(id):
         lista=producto.consultaGeneral()
     else:
         lista=producto.consultarProductosPorCategoria(id)
-    #print(lista)
+    print(lista)
     listaProductos=[]
     #Generacion de un diccionario para convertir los datos a JSON
     for prod in lista:
         prod_dic={'idProducto':prod.idProducto,'nombre':prod.nombre,'descripcion':prod.descripcion,'precio':prod.precioVenta,'existencia':prod.existencia}
         listaProductos.append(prod_dic)
-    #print(listaProductos)
+    print(listaProductos)
     var_json=json.dumps(listaProductos)
     return var_json
 
