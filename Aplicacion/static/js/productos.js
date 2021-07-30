@@ -1,4 +1,4 @@
-function obtenerID(){
+function obtenerIDCategarias(){
     var combo=document.getElementById("Categoria");
     var idCategoria=combo.options[combo.options.selectedIndex].value;
     var ajax=new XMLHttpRequest();
