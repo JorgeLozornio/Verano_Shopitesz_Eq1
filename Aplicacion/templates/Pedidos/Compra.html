@@ -1,7 +1,7 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} 
 
 {% block titulo%}
-    Productos General
+    Compra
 {% endblock %}
 
 {% block content %}
@@ -32,19 +32,26 @@
                             <input type="text" name="idProducto" class="input" value='{{car.idProducto}}' readonly>
                         </div>
                         <br>
-                        <div class="form-group">
-                            <label for="noTarjeta">Num Tarjeta:</label>
-                            <input type="text" name="noTarjeta" class="input" value='{{tar.noTarjeta}}' required>
+                        <div class="form-group form-floating">
+                            <select class="form-select form-control" name="noTarjeta" id="noTarjeta" aria-label="Floating label select example">
+                                {% for tar in Tarjetas %}
+                                    {% if tar.idUsuario==get_id(current_user) %}
+                                        <option value="{{tar.idTarjeta}}">{{tar.noTarjeta}}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                            <label for="floatingSelect">Selecciona Tarjeta</label>
+                            <br>
                         </div>
                         <br>
                         <div class="form-group">
                             <label>Fecha Registro:</label>
-                            <input type="date" name="fechaRegistro" class="input" min="2021-07-27"  required>
+                            <input type="date" name="fechaRegistro" class="input" min="2021-07-30"  required>
                         </div>
                         <br>
                         <div class="form-group">
                             <label>Fecha Atencion:</label>
-                            <input type="date" name="fechaAtencion" class="input" min="2021-07-27"  readonly>
+                            <input type="date" name="fechaAtencion" class="input" min="2021-07-30"  readonly>
                         </div>
                         <br>
                         <div class="form-group">
@@ -76,4 +83,9 @@
 </div>
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="{{url_for('static',filename='js/compras.js')}}"></script>
 {% endblock %}

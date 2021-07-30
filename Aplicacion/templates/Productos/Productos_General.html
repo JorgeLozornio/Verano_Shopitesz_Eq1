@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 
 {% block titulo%}
-    Productos General
+Consulta Productos
 {% endblock %}
 
 {% block content %}
 {{super()}}
-    
+
 <div>
     <div class=" d-flex justify-content-center py-4" style="height: 800px">
         <div >
@@ -34,9 +34,7 @@
                                     <br>
                                     <button class="btn btn-default" id="agregar" onclick="agregarCarrito()">Comprar</button>
                                 </div>
-                            </div>
-                            
-        
+                            </div>      
                         </div>
                     </div>
                     {%endfor%}
@@ -45,5 +43,5 @@
         </div>
     </div>
 </div>
-<script src="{{url_for('static',filename='js/productos.js')}}"></script>
-    {% endblock %}
+<script src="{{url_for('static',filename='../js/productos.js')}}"></script>
+{% endblock %}
