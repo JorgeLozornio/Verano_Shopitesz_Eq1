@@ -219,12 +219,12 @@ class Pedidos(db.Model):
     idComprador = Column( Integer, ForeignKey('Usuarios.idUsuario') )
     idVendedor = Column( Integer, ForeignKey('Usuarios.idUsuario') )
     idTarjeta = Column( Integer, ForeignKey('Tarjetas.idTarjeta') )
-    fechaRegistro = Column( String, nullable = False )
-    fechaAtencion = Column( String, nullable = False )
-    fechaRecepcion = Column( String, nullable = False )
-    fechaCierre = Column( String, nullable = False )
+    fechaRegistro = Column(Date, default = datetime.date.today())
+    fechaAtencion = Column(Date, default = datetime.date.today())
+    fechaRecepcion = Column(Date, default = datetime.date.today())
+    fechaCierre = Column(Date, default = datetime.date.today())
     total = Column( Float, nullable = False )
-    estatus = Column( String, nullable = False )
+    estatus = Column(String, nullable = False, default = 'Pendiente')
 
     def consultaGeneral(self):
         return self.query.all()
@@ -327,8 +327,8 @@ class DetallePedidos(db.Model):
     cantidadAceptada = Column( Integer, nullable = False )
     cantidadRechazada = Column( Integer, nullable = False )
     subtotal = Column( Float, nullable = False )
-    estatus = Column( String, nullable = False )
-    comentario = Column( String, nullable = False )
+    estatus = Column(String, nullable = False, default = 'Pendiente')
+    comentario = Column( String,default='' )
 
     def consultaGeneral(self):
         return self.query.all()

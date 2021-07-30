@@ -624,8 +624,9 @@ def consultarPedido(id):
 #Comprar Carrito
 @app.route('/Pedidos/Comprar/<int:id>')
 def comprar(id):
+    carr=Carrito()
     ped=Pedidos()
-    ped.agregar()
+    carr.agregar(ped)
     return render_template('Pedidos/Compra.html')
 
 
