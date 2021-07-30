@@ -9,12 +9,14 @@ Carrito
 
 <div>
     <div class=" d-flex justify-content-center py-4" style="height: 800px">
-        <div >
+        <div>
             <div class="card text-white bg-success mb-3 text-center shadow-lg" style="max-width: rem; width: 1800PX;">
-                <div class="card-header"> 
-                    <img src="../../static/img/tec.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                    Carrito</div>
-                <div class="card-body bg-light text-dark">                   
+                <div class="card-header">
+                    <img src="../../static/img/tec.jpg" alt="" width="30" height="24"
+                        class="d-inline-block align-text-top">
+                    Carrito
+                </div>
+                <div class="card-body bg-light text-dark">
                     <table class="table">
                         <thead>
                             <th>Seleccionar</th>
@@ -23,16 +25,22 @@ Carrito
                             <th>PRECIO</th>
                             <th>TOTAL</th>
                             <th>FECHA DE REGISTRO</th>
+                            <th></th>
                         </thead>
                         {% for pro in cesta %}
-                            <tr>
-                                <td><input type="checkbox" name="idProducto"></td>
-                                <td>{{pro.producto.nombre}}</td>
-                                <td>{{pro.cantidad}}</td>
-                                <td>{{pro.producto.precioVenta}}</td>
-                                <td>{{pro.producto.precioVenta * pro.cantidad}}</td>
-                                <td>{{pro.fecha}}</td>
-                            </tr>
+                        <tr>
+                            <td><input type="checkbox" name="idProducto"></td>
+                            <td>{{pro.producto.nombre}}</td>
+                            <td>{{pro.cantidad}}</td>
+                            <td>{{pro.producto.precioVenta}}</td>
+                            <td>{{pro.producto.precioVenta * pro.cantidad}}</td>
+                            <td>{{pro.fecha}}</td>
+                            <td>
+                                <a href="/Cesta/{{pro.idCarrito}}" class="btn btn-warning btn-lg"  role="button">Editar
+                                    <span class="glyphicon glyphicon-eye-open"></span>                                   
+                                </a>
+                            </td>
+                        </tr>
                         {% endfor %}
                     </table>
                 </div>
@@ -43,7 +51,8 @@ Carrito
 
 <footer>
     <p align="right">
-        <a class="btn btn-outline-success" type="button" style="background: darkgreen; color: floralwhite;" href="../Pedidos/Compra.html"> Comprar </a>
+        <a class="btn btn-outline-success" type="button" style="background: darkgreen; color: floralwhite;"
+            href="../Pedidos/Compra.html"> Comprar </a>
         &nbsp;
     </p>
 </footer>

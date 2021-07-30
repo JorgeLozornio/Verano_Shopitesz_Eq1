@@ -287,6 +287,7 @@ def eliminarProducto(id):
 def consultarImagenProductos(id):
     pro=Producto()
     return pro.consultarImagen(id)
+
 #CONSULTAR Producto ESPECIFICA
 @app.route('/Productos/<int:id>')
 def consultarProductos(id):
@@ -333,6 +334,21 @@ def cesta():
     if current_user.is_authenticated:
         carrito = Carrito()
         return render_template('Cesta/Cesta.html', cesta = carrito.consultaGeneral(current_user.idUsuario))
+
+@app.route('/cesta/eliminar/<int:id>')
+def eliminardeCarrito(id):
+    try:
+        carrito=Carrito()
+        carrito.eliminar(id)
+        flash('Eliminado del carrito con exito')
+    except:
+        flash('Error al eliminar del carrito')
+    return redirect(url_for('cesta'))
+
+@app.route('/Cesta/<int:id>')
+def cestaeliminar(id):
+    carr = Carrito()
+    return render_template('Cesta/eliminar.html', carr = carr.consultaIndividuall(id))
 # fin de la seccion del carrito
 
 

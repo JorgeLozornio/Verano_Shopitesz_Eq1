@@ -270,6 +270,14 @@ class Carrito(db.Model):
     def consultaGeneral(self,idUsuario):
         return self.query.filter(Carrito.idUsuario == idUsuario).all()
 
+    def consultaIndividuall(self,id):
+        return Carrito.query.get(id)
+
+    def eliminar(self,id):
+        carr=self.consultaIndividuall(id)
+        db.session.delete(carr)
+        db.session.commit()
+
 #TABLA DE PAQUETERIAS
 class PAQUETERIA(db.Model):
     __tablename__='Paqueteria' 

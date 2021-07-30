@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block titulo%}
+Editar Caategorias
+{% endblock %}
+
+{% block content %}
+{{super()}}
+
+<div>
+    <div class=" d-flex justify-content-center py-4" style="height: 800px">
+        <div>
+            <div class="card text-white bg-success mb-3 text-center shadow-lg" style="max-width: rem; width: 500PX;">
+                <div class="card-header">
+                    <img src="../../static/img/tec.jpg" alt="" width="30" height="24"
+                        class="d-inline-block align-text-top">
+                    Eliminar de Carrito
+                </div>
+                <div class="card-body bg-light text-dark">
+                    <form action="/Categorias/editar" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="id">ID:</label>
+                            <input type="number" name="id" value="{{carr.idCarrito}}" readonly class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Producto:</label>
+                            <input type="text" name="nombre" required maxlength="60" readonly 
+                                class="form-control" value="{{carr.producto.nombre}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Fecha:</label>
+                            <input type="text" name="nombre" required maxlength="60" readonly 
+                                class="form-control" value="{{carr.fecha}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Cantidad:</label>
+                            <input type="text" name="nombre" required maxlength="60" readonly placeholder="Nombre de Categoria"
+                                class="form-control" value="{{carr.cantidad}}">
+                        </div><br>
+                        <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrar">
+                            Eliminar
+                        </a>
+                        <a href="/Cesta" class="btn btn-primary">
+                            Cancelar
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para ver el cuadro de dialogo de eliminar-->
+<div id="borrar" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h4 class="modal-title">Eliminación del Carrito</h4>
+            </div>
+            <div class="modal-body">
+                <p>¿ Estas seguro de eliminar del carrito: <b>{{carr.producto.nombre}} ?</b> </p>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary" href="/cesta/eliminar/{{carr.idCarrito}}">Aceptar</a>
+                <button type="button" class="btn btn-info bg-danger text-white" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
