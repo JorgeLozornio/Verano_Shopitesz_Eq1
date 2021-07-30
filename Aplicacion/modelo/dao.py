@@ -280,11 +280,11 @@ class Carrito(db.Model):
 
 #TABLA DE PAQUETERIAS
 class PAQUETERIA(db.Model):
-    __tablename__='Paqueteria' 
+    __tablename__='Paqueterias' 
     idPaqueteria = Column( Integer, primary_key = True )
     nombre = Column( String, unique = True )
     paginaweb = Column( String, unique = True )
-    precio = Column( String, unique = True )
+    preciogr = Column( String, unique = True )
     telefono = Column( String, unique = True )
     estatus = Column( String, nullable = True)
 
