@@ -369,9 +369,8 @@ def cesta():
 @app.route('/Pedidos/Comprar/<int:id>')
 def comprar(id):
     carr=Carrito()
-    ped=Pedidos()
-    pro=Producto()
-    return render_template('Pedidos/Compra.html',carr=carr.consultaIndividuall)
+    tar=Tarjetas()
+    return render_template('Pedidos/Compra.html',carr=carr.consultaIndividuall(id),pro=carr.consultaIndividuall(id).idProducto,tarjetas=tar.consultaGeneral())
 
 @app.route('/cesta/eliminar/<int:id>')
 def eliminardeCarrito(id):
