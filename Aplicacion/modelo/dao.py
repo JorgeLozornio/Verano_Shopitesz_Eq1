@@ -62,7 +62,10 @@ class Producto(db.Model):
     
     def consultaIndividuall(self,id):
         return Producto.query.get(id)
-        
+
+    def consultarProductosPorCategoria(self,idCategoria):
+        return self.query.filter(Producto.idCategoria==idCategoria,Producto.estatus=='A').all()
+
     def consultarFoto(self,id):
         return self.consultaIndividuall(id).foto
     
@@ -257,8 +260,8 @@ class Carrito(db.Model):
     fecha = Column(Date, default = datetime.date.today())
     cantidad = Column(Integer, nullable = False, default = 1)
     estatus = Column(String, nullable = False, default = 'Pendiente')
-    producto = relationship('Producto', backref = 'carrito', lazy = 'select')
-    usuario = relationship('Usuario', backref = 'carrito', lazy = 'select')
+    producto = relationship('Producto', backref = 'Carrito', lazy = 'select')
+    usuario = relationship('Usuario', backref = 'Carrito', lazy = 'select')
 
     def agregar(self):
         db.session.add(self)
