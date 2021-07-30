@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} 
 
 {% block titulo%}
 Editar Detalles de Pedidos
@@ -80,11 +80,12 @@ Editar Detalles de Pedidos
                             </select>
                             <label for="floatingSelect">Estatus</label>
                             <br>
+                        </div>
                         <div class="form-group">
                             <label>Comentarios:</label>
-                            <input type="text" name="comentario" class="input" value='{{ped.comentario}}' required>
+                            <input type="text" name="comentario" class="input" value='{{det.comentario}}' required>
                         </div>
-                        </div>
+                        
 
                         <br>
                         <button type="submit" class="btn btn-success">Guardar</button>

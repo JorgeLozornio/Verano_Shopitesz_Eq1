@@ -19,7 +19,7 @@
                     <form action="/Pedidos/Compra" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="idComprador">ID Comprador:</label>
-                            <input type="text" name="idComprador" class="input" value='{{us.idUsuario}}' readonly>
+                            <input type="text" name="idComprador" class="input" value='{{get_id(current_user)}}' readonly>
                         </div>
                         <br>
                         <div class="form-group">
