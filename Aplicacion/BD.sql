@@ -83,6 +83,17 @@ create table Pedidos(
     constraint chk_estatus check (estatus in('Activa','Inactiva'))
 );
 
+create table PAQUETERIAS
+(
+   IDPAQUETERIA         int not null auto_increment,
+   NOMBRE               varchar(50),
+   PAGINAWEB            varchar(200),
+   PRECIOGR             float,
+   TELEFONO             varchar(12),
+   ESTATUS              varchar(10),
+   primary key (IDPAQUETERIA)
+);
+
 create Table DetallePedidos(
 	idDetalle int auto_increment not null,
     idPedido int not null,
