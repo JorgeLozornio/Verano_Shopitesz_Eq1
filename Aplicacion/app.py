@@ -211,13 +211,7 @@ def agregarProducto():
         flash('¡ Producto agregado con exito !')
     except:
         flash('¡ Error al agregar el Producto !')
-    return redirect(url_for('consultaProductos'))
-
-#REDIRECCIONA A LA PAGINA PARA CONSULTAR Productos
-@app.route('/Productos/Productos_General')
-def consultaProductos():
-    pro=Producto()
-    return render_template('Productos/consultaProducto.html', pro = pro.consultaGeneral())
+    return redirect(url_for('productosPorCategoria'))
 
 #REDIRECCIONA A LA PAGINA PARA EDITAR Productos
 @app.route('/Productos/editarProductos',methods=['POST'])
@@ -243,7 +237,7 @@ def editarTProducto():
     except:
         flash('¡ Error al editar el producto !')
 
-    return redirect(url_for('consultaProducto'))
+    return redirect(url_for('productosPorCategoria'))
 
 @app.route("/productos/categorias")
 def productosPorCategoria():
@@ -257,13 +251,13 @@ def consultarProductosPorCategoria(id):
         lista=producto.consultaGeneral()
     else:
         lista=producto.consultarProductosPorCategoria(id)
-    print(lista)
+    #print(lista)
     listaProductos=[]
     #Generacion de un diccionario para convertir los datos a JSON
     for prod in lista:
         prod_dic={'idProducto':prod.idProducto,'nombre':prod.nombre,'descripcion':prod.descripcion,'precio':prod.precioVenta,'existencia':prod.existencia}
         listaProductos.append(prod_dic)
-    print(listaProductos)
+    #print(listaProductos)
     var_json=json.dumps(listaProductos)
     return var_json
 

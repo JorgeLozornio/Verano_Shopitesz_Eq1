@@ -7,7 +7,7 @@ function obtenerIDCategorias(){
     ajax.open('get',url,true);
     ajax.onreadystatechange=function(){
         if(this.readyState==4 && this.status==200){
-           llenarTabla(this.responseText);
+           llenarTablaProd(this.responseText);
         }
     };
     ajax.send();
@@ -15,7 +15,7 @@ function obtenerIDCategorias(){
 function imprimirMsg(){
     alert('Documento cargado');
 }
-function llenarTabla(datos){
+function llenarTablaProd(datos){
     console.log('1')
     var tabla=document.getElementById("datos");
     var productos=JSON.parse(datos);
@@ -31,9 +31,9 @@ function llenarTabla(datos){
             td.appendChild(texto);
             tr.appendChild(td);
         }
-        var link=crearLink(prod.idProducto);
+        //var link=crearLink(prod.idProducto);
         td=document.createElement("td");
-        td.appendChild(link);
+        td.innerHTML= `<a onclick="mostrarProducto(${prod.idProducto})" data-bs-toggle="modal" data-bs-target="#producto">Comprar</a>`;
         tr.appendChild(td);
         tabla.appendChild(tr);     
     }
@@ -46,16 +46,18 @@ function eliminarTabla(){
 	}
 }
 function crearLink(id){
-    var link=document.createElement("a");
+    console.log('ab')
+    var link=document.createElement("button");
     link.setAttribute("onclick","mostrarProducto("+id+")");
-    link.setAttribute("data-toggle","modal");
-    link.setAttribute("data-target","#producto");
+    link.setAttribute("data-bstoggle","modal");
+    link.setAttribute("data-bstarget","#producto");
     var span=document.createElement("span");
     span.setAttribute("class","glyphicon glyphicon-shopping-cart");
     link.appendChild(span);
     return link;
 }
 function mostrarProducto(id){
+    console.log('mostrar')
     var ajax=new XMLHttpRequest();
     url='/producto/'+id;
     ajax.open('get',url,true);
@@ -68,6 +70,7 @@ function mostrarProducto(id){
     ajax.send();   
 }
 function llenarCamposProductos(producto){
+    console.log('si llena')
     if(producto.estatus!='error'){
         document.getElementById("cantidad").value=1;
         validarCantidad(producto.existencia,producto.precio);
@@ -90,6 +93,7 @@ function llenarCamposProductos(producto){
     }
 }
 function validarCantidad(existencia,precio){
+    console.log('sivalida:v')
     var cantidad=document.getElementById("cantidad").value;
     if(cantidad<=existencia && cantidad>0){
         document.getElementById("total").value=precio*cantidad;
@@ -103,6 +107,7 @@ function validarCantidad(existencia,precio){
     }
 }
 function agregarCarrito(){
+    console.log('Yaagrego:´v')
     var carrito={idProducto:document.getElementById("id").value,
                  cantidad:document.getElementById("cantidad").value};
     var json=JSON.stringify(carrito);
