@@ -29,11 +29,7 @@ Editar Pedido
                         </div><br>
                         <div class="form-group">
                             <label for="idVendedor">ID Vendedor:</label>
-                            {% for us in usuarios %}
-                                    {% if current_user.is_vendedor%}
-                                    <input type="number" name="idVendedor" value="{{us.idUsuario}}" readonly class="form-control">
-                                    {% endif %}
-                            {% endfor %}
+                            <input type="number" name="idVendedor" value="{{ped.idVendedor}}" readonly class="form-control">
                         </div><br>
                         <div class="form-group">
                             <label for="idTarjeta">ID Tarjeta:</label>
