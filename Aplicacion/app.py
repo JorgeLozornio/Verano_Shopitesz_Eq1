@@ -55,7 +55,7 @@ def login():
     user=usuario.validar(correo,password)
     if user!=None:
         login_user(user)
-        return render_template('Productos/consultaProducto.html')
+        return render_template('productos/consultaProducto.html')
     else:
         flash('Nombre de usuario o contraseña incorrectos')
         print('Error de inicio de sesión')
