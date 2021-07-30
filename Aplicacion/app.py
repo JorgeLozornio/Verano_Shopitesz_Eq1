@@ -32,7 +32,7 @@ def before_request():
 @app.route('/usuarios/iniciarSesion')
 def mostrar_login():
     if current_user.is_authenticated:
-        return render_template('productos/Productos_General.html')
+        return render_template('productos/consultaProductos.html')
     else:
         return render_template('usuarios/login.html')
 
@@ -43,7 +43,7 @@ def cargar_usuario(id):
 @app.route('/usuarios/nuevo')
 def nuevoUsuario():
     if current_user.is_authenticated and not current_user.is_admin():
-        return render_template('productos/Productos_General.html')
+        return render_template('productos/consultaProductos.html')
     else: 
         return render_template('usuarios/agregar.html')
 
