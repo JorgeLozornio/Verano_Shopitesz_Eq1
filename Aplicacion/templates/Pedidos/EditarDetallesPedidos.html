@@ -40,15 +40,15 @@ Editar Detalles de Pedidos
                         </div><br>
                         <div class="form-group">
                             <label for="CantidadE">Cantidad Enviada:</label>
-                            <input type="number" name="cantidadEnviada" value="{{det.cantidadEnviada}}" readonly class="form-control">
+                            <input type="number" name="cantidadEnviada" value="{{det.cantidadEnviada}}" class="form-control">
                         </div><br>
                         <div class="form-group">
                             <label for="CantidadA">Cantidad Aceptada:</label>
-                            <input type="number" name="cantidadAceptada" value="{{det.cantidadAceptada}}" readonly class="form-control">
+                            <input type="number" name="cantidadAceptada" value="{{det.cantidadAceptada}}" class="form-control">
                         </div><br>
                         <div class="form-group">
                             <label for="CantidadR">Cantidad Rechazada:</label>
-                            <input type="number" name="cantidadRechazada" value="{{det.cantidadRechazada}}" readonly class="form-control">
+                            <input type="number" name="cantidadRechazada" value="{{det.cantidadRechazada}}" class="form-control">
                         </div><br>
                         
                         <div class="form-group">
@@ -57,11 +57,6 @@ Editar Detalles de Pedidos
                         </div><br>
                         <div class="form-group form-floating">
                             <select class="form-select form-control" name="estatus" id="estatus" aria-label="Floating label select example">
-                                {% if ped.estatus == 'Pendiente' %}
-                                    <option value="Pendiente" selected>Pendiente</option>
-                                {% else %}
-                                    <option value="Pendiente">Pendiente</option>
-                                {% endif %}
                                 {% if ped.estatus == 'En camino' %}
                                     <option value="En camino" selected>En camino</option>
                                 {% else %}

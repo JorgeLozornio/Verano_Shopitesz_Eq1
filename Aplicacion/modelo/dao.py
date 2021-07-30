@@ -250,7 +250,7 @@ class Pedidos(db.Model):
 
     def eliminacionLogica(self,id):
         ped = self.consultaIndividuall(id)
-        ped.estatus='Inactiva'
+        ped.estatus='Cancelado'
         ped.editar()
 
  #TABLA DE CARRITO
