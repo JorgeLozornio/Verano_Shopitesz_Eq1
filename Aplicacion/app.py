@@ -245,6 +245,39 @@ def editarTProducto():
 
     return redirect(url_for('consultaProducto'))
 
+@app.route("/productos/categorias")
+def productosPorCategoria():
+    categoria=Categoria()
+    return render_template('productos/productosPorCategoria.html',categorias=categoria.consultaGeneral())
+
+@app.route("/productos/categoria/<int:id>")
+def consultarProductosPorCategoria(id):
+    producto=Producto()
+    if id==0:
+        lista=producto.consultaGeneral()
+    else:
+        lista=producto.consultarProductosPorCategoria(id)
+    #print(lista)
+    listaProductos=[]
+    #Generacion de un diccionario para convertir los datos a JSON
+    for prod in lista:
+        prod_dic={'idProducto':prod.idProducto,'nombre':prod.nombre,'descripcion':prod.descripcion,'precio':prod.precioVenta,'existencia':prod.existencia}
+        listaProductos.append(prod_dic)
+    #print(listaProductos)
+    var_json=json.dumps(listaProductos)
+    return var_json
+
+@app.route('/producto/<int:id>')
+def consultarProducto(id):
+    if current_user.is_authenticated and current_user.is_comprador():
+        prod=Producto()
+        prod=prod.consultaIndividuall(id)
+        dict_producto={"idProducto":prod.idProducto,"nombre":prod.nombre,"descripcion":prod.descripcion,"precio":prod.precioVenta,"existencia":prod.existencia}
+        return json.dumps(dict_producto)
+    else:
+        msg={"estatus":"error","mensaje":"Debes iniciar sesion"}
+        return json.dumps(msg)
+
 #ELIMINAR Productos
 @app.route('/Productos/eliminar/<int:id>')
 def eliminarProducto(id):
@@ -266,7 +299,6 @@ def consultarProductos(id):
     pro = Producto()
     ur = Usuario()
     return render_template('Productos/editarProducto.html', pro = pro.consultaIndividuall(id))
-
 
 
 #_______________RUTAS RELACIONADAS CON LOS PEDIDOS_______________#
