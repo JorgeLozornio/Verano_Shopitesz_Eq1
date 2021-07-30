@@ -5,10 +5,10 @@ Consulta Productos
 {% block content %}
 {{super()}}
 <label>Selecciona la Categoria:</label>
-<select id="categoria" onchange="obtenerID()">
+<select id="categoria" onchange="obtenerIDCategorias()">
     <option value="0">Todas las categorias</option>
     {% for cat in categorias %}
-        {% if cat.estatus=='Activa' %}
+        {% if cat.estatus=='A' %}
         <option value="{{cat.idCategoria}}">{{cat.nombre}}</option>
         {% endif %}
     {% endfor %}
