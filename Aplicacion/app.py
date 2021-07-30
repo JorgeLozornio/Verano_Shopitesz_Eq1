@@ -144,7 +144,7 @@ def agregarUsuarioCliente():
     except:
         print('No paso')
         flash('¡ Error al agregar al usuario !')
-    return redirect(url_for('productosPorCategorias'))
+    return redirect(url_for('productosPorCategoria'))
 
 #CONSULTAR USUARIO ESPECIFICO
 @app.route('/usuarios/<int:id>')
