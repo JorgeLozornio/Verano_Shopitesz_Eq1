@@ -82,12 +82,50 @@ Editar Usuarios
                             </select>
                             <label for="floatingSelect">Estatus</label>
                         </div>
+                        {%else%}
+                        <div class="form-group form-floating" style="visibility:hidden;">
+                            <select class="form-select form-control" id="tipo" name="tipo" aria-label="Floating label select example">
+                                {% if us.tipo == 'Cliente' %}
+                                    <option value="Cliente" selected>Cliente</option>
+                                {% else %}
+                                    <option value="Cliente">Cliente</option>
+                                {% endif %}
+                                {% if us.tipo == 'Vendedor' %}
+                                    <option value="Vendedor" selected>Vendedor</option>
+                                {% else %}
+                                    <option value="Vendedor">Vendedor</option>
+                                {% endif %}
+                                {% if us.tipo == 'Admin' %}
+                                    <option value="Admin" selected>Administrador</option>
+                                {% else %}
+                                    <option value="Admin">Administrador</option>
+                                {% endif %}
+                            </select>
+                            <label for="Tipo">Tipo</label>
+                        </div><br>
+                        <div class="form-group form-floating" style="visibility:hidden;">
+                            <select class="form-select form-control" name="estatus" id="estatus" aria-label="Floating label select example">
+                                {% if us.estatus == 'A' %}
+                                    <option value="A" selected>Activo</option>
+                                {% else %}
+                                    <option value="A">Activo</option>
+                                {% endif %}
+                                {% if us.estatus == 'I' %}
+                                    <option value="I" selected>Inactivo</option>
+                                {% else %}
+                                    <option value="I">Inactivo</option>
+                                {% endif %}
+                            </select>
+                            <label for="floatingSelect">Estatus</label>
+                        </div>
                         {%endif%}
                         <br>
                         <button type="submit" class="btn btn-success">Guardar</button>
+                        {%if current_user.is_admin()%}
                         <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrar">
                             Eliminar
-                        </a>
+                        </a>                        
+                        {%endif%}
                         {%if us.tipo=='Admin'%}
                         <a href="/usuarios" class="btn btn-primary">Cancelar</a>
                         {%else%}

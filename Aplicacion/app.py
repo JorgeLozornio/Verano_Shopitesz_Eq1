@@ -129,7 +129,7 @@ def agregarUsuarioCliente():
         usuario.nombreCompleto=request.form['nombreCompleto']
         usuario.direccion=request.form['direccion']
         usuario.telefono=request.form['telefono']        
-        usuario.email=request.form['email']
+        usuario.email=request.form['correo']
         usuario.password=request.form['password']
         usuario.tipo='Cliente'
         usuario.estatus='A'
@@ -165,6 +165,7 @@ def editarUsuario():
         us.password=request.form['password']
         us.tipo=request.form.get('tipo')
         us.estatus=request.form.get('estatus')
+            
         print(us.nombreCompleto)
         print(us.direccion)
         print(us.telefono)
@@ -176,7 +177,10 @@ def editarUsuario():
     except:
         flash('¡ Error al editar el usuario !')
 
-    return redirect(url_for('consultaUsuarios'))
+    if current_user.is_admin():
+        return redirect(url_for('consultaUsuarios'))
+    else:
+        return redirect(url_for('perfil'))
 
 #ELIMINAR USUARIO
 @app.route('/usuarios/eliminar/<int:id>')
