@@ -19,7 +19,6 @@ Carrito
                 <div class="card-body bg-light text-dark">
                     <table class="table">
                         <thead>
-                            <th>Seleccionar</th>
                             <th>PRODUCTO</th>
                             <th>UNIDADES</th>
                             <th>PRECIO</th>
@@ -29,15 +28,17 @@ Carrito
                         </thead>
                         {% for pro in cesta %}
                         <tr>
-                            <td><input type="checkbox" name="idProducto"></td>
                             <td>{{pro.producto.nombre}}</td>
                             <td>{{pro.cantidad}}</td>
                             <td>{{pro.producto.precioVenta}}</td>
                             <td>{{pro.producto.precioVenta * pro.cantidad}}</td>
                             <td>{{pro.fecha}}</td>
                             <td>
-                                <a href="/Cesta/{{pro.idCarrito}}" class="btn btn-warning btn-lg"  role="button">Editar
-                                    <span class="glyphicon glyphicon-eye-open"></span>                                   
+                                <a href="/Cesta/{{pro.idCarrito}}" class="btn btn-warning btn-lg" role="button">Editar
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                </a>
+                                <a href="/Pedidos/Compra" class="btn btn-warning btn-lg" role="button">Comprar
+                                    <span class="glyphicon glyphicon-eye-open"></span>                                  
                                 </a>
                             </td>
                         </tr>
@@ -48,12 +49,4 @@ Carrito
         </div>
     </div>
 </div>
-
-<footer>
-    <p align="right">
-        <a class="btn btn-outline-success" type="button" style="background: darkgreen; color: floralwhite;"
-            href="../Pedidos/Compra.html"> Comprar </a>
-        &nbsp;
-    </p>
-</footer>
 {% endblock %}
