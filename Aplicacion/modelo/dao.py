@@ -103,6 +103,7 @@ class Usuario(UserMixin,db.Model):
     password_hash=Column(String(128),nullable=False)
     tipo=Column(String,nullable=False)
     estatus=Column(String,nullable=False)
+    tarjeta = relationship('Tarjetas', backref = 'Usuario', lazy = 'select')
 
     @property #Implementa el metodo Get (para acceder a un valor)
     def password(self):
@@ -186,6 +187,7 @@ class Tarjetas(db.Model):
     saldo = Column( String, nullable = False )
     banco = Column( String, nullable = False )
     estatus = Column( String, nullable = False )
+    
 
     def consultaGeneral(self):
         return self.query.all()

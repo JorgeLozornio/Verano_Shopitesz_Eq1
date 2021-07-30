@@ -544,14 +544,12 @@ def eliminarCategoria(id):
 
 #REDIRECCIONA A LA PAGINA PARA AGREGAR PEDIDOS
 @app.route('/Pedidos/Compra',methods=['post'])
-def agregar():
+def agregarPedido():
     try:
         ped=Pedidos()
-        ped.idPedido=request.form['idPedido']
         ped.idComprador=request.form['idComprador']
         ped.idVendedor=request.form['idVendedor']
         ped.idTarjeta=request.form['idTarjeta']
-        ped.fechaRegistro=request.form['fechaRegistro']
         ped.total=request.form['total']
         ped.agregar()
         flash('¡ Pedido agregado con exito !')
