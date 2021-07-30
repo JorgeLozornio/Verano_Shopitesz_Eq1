@@ -35,7 +35,7 @@
                         <div class="form-group form-floating">
                             <select class="form-select form-control" name="noTarjeta" id="noTarjeta" aria-label="Floating label select example">
                                 {% for tar in Tarjetas %}
-                                    {% if tar.idUsuario==get_id(current_user) %}
+                                    {% if tar.idUsuario==current_user.get_id %}
                                         <option value="{{tar.idTarjeta}}">{{tar.noTarjeta}}</option>
                                     {% endif %}
                                 {% endfor %}
