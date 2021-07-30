@@ -15,6 +15,9 @@ Consulta Productos
                     <img src="../../static/img/tec.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
                     Listado de Productos</div>
                 <div class="card-body bg-light text-dark">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end py-4 px-4">
+                        <a href="{{url_for('nuevoProducto')}}" class="btn btn-success btn-lg" role="button">Agregar</a>
+                    </div>
                     {%for pro in productos%}
                     <div class="card text-black bg-light mb-3 text-left shadow-lg" style="max-width: rem; width: 1800PX;">
                         
@@ -32,7 +35,9 @@ Consulta Productos
                                 <div class="col">
                                     <H1>${{pro.precioVenta}}</H1>
                                     <br>
-                                    <button class="btn btn-default" id="agregar" onclick="agregarCarrito()">Comprar</button>
+                                    <a href="/Productos/{{pro.idProducto}}" class="btn btn-warning btn-lg" role="button">Editar
+                                        <span class="glyphicon glyphicon-eye-open"></span>                                   
+                                    </a>
                                 </div>
                             </div>      
                         </div>
@@ -43,5 +48,5 @@ Consulta Productos
         </div>
     </div>
 </div>
-<script src="{{url_for('static',filename='js/productos.js')}}"></script>
+<script src="{{url_for('static',filename='../js/productos.js')}}"></script>
 {% endblock %}

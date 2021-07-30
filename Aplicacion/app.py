@@ -311,7 +311,8 @@ def eliminarProducto(id):
         flash('Producto eliminado con exito')
     except:
         flash('Error al eliminar el Producto')
-    return redirect(url_for('consultaProductos'))
+    return redirect(url_for('productos'))
+
 #CONSULTA IMAGEN
 @app.route('/Productos/consultarImagen/<int:id>')
 def consultarImagenProductos(id):
@@ -320,7 +321,7 @@ def consultarImagenProductos(id):
 
 #CONSULTAR Producto ESPECIFICA
 @app.route('/Productos/<int:id>')
-def consultarProductos(id):
+def editarunProducto(id):
     pro = Producto()
     ur = Usuario()
     return render_template('Productos/editarProducto.html', pro = pro.consultaIndividuall(id))
