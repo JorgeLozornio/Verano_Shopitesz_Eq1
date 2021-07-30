@@ -55,7 +55,7 @@ def login():
     user=usuario.validar(correo,password)
     if user!=None:
         login_user(user)
-        return render_template('productos/Productos_General.html')
+        return render_template('Productos/consultaProducto.html')
     else:
         flash('Nombre de usuario o contraseña incorrectos')
         print('Error de inicio de sesión')
@@ -217,7 +217,7 @@ def agregarProducto():
 @app.route('/Productos/Productos_General')
 def consultaProductos():
     pro=Producto()
-    return render_template('Productos/consultaProducto.html', productos = pro.consultaGeneral())
+    return render_template('Productos/consultaProducto.html', pro = pro.consultaGeneral())
 
 #REDIRECCIONA A LA PAGINA PARA EDITAR Productos
 @app.route('/Productos/editarProductos',methods=['POST'])
