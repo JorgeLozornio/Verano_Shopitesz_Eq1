@@ -32,7 +32,8 @@ def before_request():
 @app.route('/usuarios/iniciarSesion')
 def mostrar_login():
     if current_user.is_authenticated:
-        return render_template('productos/consultaProductos.html')
+        categoria=Categoria()
+        return render_template('productos/productosPorCategoria.html',categorias=categoria.consultaGeneral())
     else:
         return render_template('usuarios/login.html')
 
@@ -43,7 +44,7 @@ def cargar_usuario(id):
 @app.route('/usuarios/nuevo')
 def nuevoUsuario():
     if current_user.is_authenticated and not current_user.is_admin():
-        return render_template('productos/consultaProductos.html')
+        return render_template(url_for('productosPorCategoria'))
     else: 
         return render_template('usuarios/agregar.html')
 
@@ -55,7 +56,8 @@ def login():
     user=usuario.validar(correo,password)
     if user!=None:
         login_user(user)
-        return render_template('productos/consultaProducto.html')
+        categoria=Categoria()
+        return render_template('productos/productosPorCategoria.html',categorias=categoria.consultaGeneral())
     else:
         flash('Nombre de usuario o contraseña incorrectos')
         print('Error de inicio de sesión')
