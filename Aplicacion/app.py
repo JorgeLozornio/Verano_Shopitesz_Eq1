@@ -365,6 +365,14 @@ def cesta():
         carrito = Carrito()
         return render_template('Cesta/Cesta.html', cesta = carrito.consultaGeneral(current_user.idUsuario))
 
+#Comprar Carrito
+@app.route('/Pedidos/Comprar/<int:id>')
+def comprar(id):
+    carr=Carrito()
+    ped=Pedidos()
+    pro=Producto()
+    return render_template('Pedidos/Compra.html',carr=carr.consultaIndividuall)
+
 @app.route('/cesta/eliminar/<int:id>')
 def eliminardeCarrito(id):
     try:
@@ -544,25 +552,11 @@ def agregar():
         ped.idVendedor=request.form['idVendedor']
         ped.idTarjeta=request.form['idTarjeta']
         ped.fechaRegistro=request.form['fechaRegistro']
-        ped.fechaAtencion=request.form['fechaAtencion']
-        ped.fechaRecepcion=request.form['fechaRecepcion']
-        ped.fechaCierre=request.form['fechaCierre']
         ped.total=request.form['total']
-        ped.estatus=request.form.get('estatus')
-        print(ped.idPedido)
-        print(ped.idComprador)
-        print(ped.idVendedor)
-        print(ped.idTarjeta)
-        print(ped.fechaRegistro)
-        print(ped.fechaAtencion)
-        print(ped.fechaRecepcion)
-        print(ped.fechaCierre)
-        print(ped.total)
-        print(ped.estatus)
         ped.agregar()
-        flash('¡ Pedido agregada con exito !')
+        flash('¡ Pedido agregado con exito !')
     except:
-        flash('¡ Error al agregar la Pedido !')
+        flash('¡ Error al agregar el Pedido !')
     return redirect(url_for('consultaPedidos'))
 
 #REDIRECCIONA A LA PAGINA PARA CONSULTAR PEDIDOS
@@ -597,7 +591,7 @@ def editarPedido():
         print(ped.total)
         print(ped.estatus)
         ped.editar()
-        flash('¡ Pedido editada con exito !')
+        flash('¡ Pedido editado con exito !')
     except:
         flash('¡ Error al editar el Pedido !')
 
@@ -621,13 +615,6 @@ def consultarPedido(id):
     ped=Pedidos()
     return render_template('Pedidos/EditarPedido.html',ped = ped.consultaIndividuall(id))
 
-#Comprar Carrito
-@app.route('/Pedidos/Comprar/<int:id>')
-def comprar(id):
-    carr=Carrito()
-    ped=Pedidos()
-    carr.agregar(ped)
-    return render_template('Pedidos/Compra.html')
 
 
 

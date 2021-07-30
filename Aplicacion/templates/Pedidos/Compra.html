@@ -19,7 +19,7 @@
                     <form action="/Pedidos/Compra" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="idComprador">ID Comprador:</label>
-                            <input type="text" name="idComprador" class="input" value='{{ped.carrito.idCarrito}}' readonly>
+                            <input type="text" name="idComprador" class="input" value='{{current_user.idUsuario}}' readonly>
                         </div>
                         <br>
                         <div class="form-group">
@@ -29,7 +29,7 @@
                         <br>
                         <div class="form-group">
                             <label for="idProducto">ID Producto:</label>
-                            <input type="text" name="idProducto" class="input" value='{{ped.carrito.idProducto}}' readonly>
+                            <input type="text" name="idProducto" class="input" value='{{carr.idProducto}}' readonly>
                         </div>
                         <br>
                         <div class="form-group form-floating">
@@ -46,31 +46,16 @@
                         <br>
                         <div class="form-group">
                             <label>Fecha Registro:</label>
-                            <input type="date" name="fechaRegistro" class="input" min="2021-07-30"  required>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label>Fecha Atencion:</label>
-                            <input type="date" name="fechaAtencion" class="input" min="2021-07-30"  readonly>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label>Fecha Recepcion:</label>
-                            <input type="date" name="fechaRecepcion" class="input" min="2021-08-10"  readonly>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label>Fecha Cierre:</label>
-                            <input type="date" name="fechaCierre" class="input" min="2021-08-10"  readonly>
+                            <input type="date" name="fechaRegistro" class="input" value="2021-07-30"  required>
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="cantidad">Cantidad:</label>
-                            <input type="number" name="cantidad" class="input" value='{{ped.carrito.cantidad}}' required>
+                            <input type="number" name="cantidad" class="input" value='{{carr.cantidad}}' required>
                         </div>
                         <div class="form-group">
                             <label for="total">Total:</label>
-                            <input type="text" name="Total" class="input" value='{{ped.producto.precioVenta * ped.carrito.cantidad}}' readonly>
+                            <input type="text" name="Total" class="input" value='{{carr.cantidad}}' readonly>
                         </div>
                         <br>
                         <button type="submit" class="btn btn-primary">Registrar</button>
