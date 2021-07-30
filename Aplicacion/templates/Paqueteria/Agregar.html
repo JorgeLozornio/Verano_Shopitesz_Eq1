@@ -16,25 +16,22 @@
                     Agregar Paqueteria</div>
                     <div class="card-body bg-light text-dark">
                         <form action="/Paqueteria/agregar" method="post" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label>ID Paqueteria:</label>
-                                <input type="text" name="idPaqueteria" class="input" required>
-                            </div>
+                            
                             <div class="form-group">
                                 <label for="nombre">Nombre:</label>
-                                <input type="text" name="nombre" required maxlength="60" placeholder="Nombre de Categoria" class="form-control">
+                                <input type="text" name="nombre" required maxlength="60"  class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="paginaweb">Pagina Web:</label>
-                                <input type="text" name="paginaweb" required maxlength="60" placeholder="Nombre de Categoria" class="form-control">
+                                <input type="text" name="paginaweb" required maxlength="60" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="telefono">Telefono:</label>
-                                <input type="text" name="telefono" required maxlength="60" placeholder="Nombre de Categoria" class="form-control">
+                                <input type="text" name="telefono" required maxlength="60" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="precio">Precio:</label>
-                                <input type="text" name="precio" required maxlength="60" placeholder="Nombre de Categoria" class="form-control">
+                                <input type="text" name="precio" required maxlength="60" class="form-control">
                             </div>
                             <div class="form-control">
                                 <label for="estatus">Estatus:</label><br>
@@ -44,7 +41,7 @@
                             </div>
                             <br>
                                 <button type="submit" class="btn btn-primary">Registrar</button>
-                                <a href="/Categorias" class="btn btn-danger">Cancelar</a>
+                                <a href="/Paqueteria" class="btn btn-danger">Cancelar</a>
                         </form>
                     </div>                   
             </div>

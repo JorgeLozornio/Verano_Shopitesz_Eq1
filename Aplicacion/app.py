@@ -649,7 +649,7 @@ def agregarPaqueteria():
         paq=PAQUETERIA()
         paq.nombre=request.form['nombre']
         paq.paginaweb=request.form['paginaweb']
-        paq.precio=request.form['precio']
+        paq.preciogr=request.form['precio']
         paq.telefono=request.form['telefono']
         paq.estatus='A'
         paq.agregar()
@@ -669,11 +669,12 @@ def consultarPaqueteria(id):
 def editarPaqueteria():
     try:
         paq=PAQUETERIA()
+        paq.idPaqueteria=request.form['id']
         paq.nombre=request.form['nombre']
         paq.paginaweb=request.form['paginaweb']
-        paq.precio=request.form['precio']
+        paq.preciogr=request.form['precio']
         paq.telefono=request.form['telefono']
-        paq.estatus=request.values.get("estatus","Inactiva")
+        paq.estatus=request.values.get("estatus","I")
         paq.editar()
         flash('¡ Paqueteria editada con exito !')
     except:
