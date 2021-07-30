@@ -591,6 +591,13 @@ def consultarPedido(id):
     ped=Pedidos()
     return render_template('Pedidos/EditarPedido.html',ped = ped.consultaIndividuall(id))
 
+#Comprar Carrito
+@app.route('/Pedidos/Comprar/<int:id>')
+def consultarPedido(id):
+    ped=Pedidos()
+    return render_template('Pedidos/EditarPedido.html',ped = ped.consultaIndividuall(id))
+
+
 
 #_______________RUTAS RELACIONADAS CON LAS PAQUETERIAS_______________#
 #CONSULTA GENERAL
